@@ -1,7 +1,7 @@
 package pl.slawek.domain;
 
 import pl.slawek.domain.adress.Adress;
-import pl.slawek.domain.pleace.Pleace;
+import pl.slawek.domain.place.Place;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class Warehouse {
 
     private Adress adress;
 
-    private List<Pleace> places;
+    private List<Place> places;
 
     public Warehouse(String name) {
         this.name = name;

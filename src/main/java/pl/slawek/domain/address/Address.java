@@ -1,6 +1,16 @@
-package pl.slawek.domain.adress;
+package pl.slawek.domain.address;
 
-public class Adress {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class Address {
+
     private String country;
     private String city;
     private String street;

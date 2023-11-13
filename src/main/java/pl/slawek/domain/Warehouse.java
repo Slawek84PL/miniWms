@@ -1,6 +1,6 @@
 package pl.slawek.domain;
 
-import pl.slawek.domain.adress.Adress;
+import pl.slawek.domain.address.Address;
 import pl.slawek.domain.place.Place;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class Warehouse {
     private String name;
 
-    private Adress adress;
+    private Address address;
 
     private List<Place> places;
 
@@ -24,11 +24,11 @@ public class Warehouse {
         this.name = name;
     }
 
-    public Adress getAdress() {
-        return adress;
+    public Address getAdress() {
+        return address;
     }
 
-    public void setAdress(Adress adress) {
-        this.adress = adress;
+    public void setAdress(Address address) {
+        this.address = address;
     }
 }

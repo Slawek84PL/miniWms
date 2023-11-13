@@ -21,4 +21,7 @@ public class WarehouseService {
         return warehouse;
     }
 
+    public void delete(Warehouse warehouse) {
+        warehouses.remove(warehouse);
+    }
 }

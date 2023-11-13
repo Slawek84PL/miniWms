@@ -1,5 +1,6 @@
 package pl.slawek.api;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +23,15 @@ public class WarehouseApi {
     }
 
     @PostMapping
-    public ResponseEntity<Warehouse> addWarehouse(@RequestBody Warehouse warehouse) {
+    public ResponseEntity<Warehouse> addWarehouse(@Valid @RequestBody Warehouse warehouse) {
         service.addWarehouse(warehouse);
         return new ResponseEntity<>(warehouse, HttpStatus.CREATED);
     }
 
-
+    @DeleteMapping
+    public ResponseEntity<?> delete(@RequestBody Warehouse warehouse) {
+        service.delete(warehouse);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }

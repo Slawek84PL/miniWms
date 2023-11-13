@@ -1,19 +1,22 @@
-package pl.slawek.domain;
+package pl.slawek.domain.warehouse;
 
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.slawek.domain.address.Address;
-import pl.slawek.domain.place.Place;
-
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class Warehouse {
+
+    @Size(min = 3, max = 4)
+    private String shortName;
+
+    @Size(min = 3, max = 25)
     private String name;
 
     private Address address;

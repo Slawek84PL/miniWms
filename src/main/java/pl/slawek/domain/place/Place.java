@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.slawek.domain.Warehouse;
 import pl.slawek.domain.article.Article;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public class Place {
     private PlaceType placeType;
 
     private List<Article> articles;
+
+    private Warehouse warehouse;
 }

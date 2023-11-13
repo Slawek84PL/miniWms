@@ -17,6 +17,4 @@ public class Warehouse {
     private String name;
 
     private Address address;
-
-    private List<Place> places;
 }

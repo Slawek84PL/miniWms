@@ -1,23 +1,32 @@
 package pl.slawek.api;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import pl.slawek.domain.Warehouse;
-import pl.slawek.domain.address.Address;
+import org.springframework.web.bind.annotation.*;
+import pl.slawek.domain.warehouse.Warehouse;
+import pl.slawek.domain.warehouse.service.WarehouseService;
 
+import java.util.List;
+
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/warehouse")
 public class WarehouseApi {
 
+    private final WarehouseService service;
+
     @GetMapping
-    public ResponseEntity<Warehouse> getWarehouse() {
-        Address address = new Address("PL", "Warszowice", "Strit", 10);
-        Warehouse warehouse = new Warehouse("Warszowice");
-        warehouse.setAdress(address);
-        return new ResponseEntity<>(warehouse, HttpStatus.OK);
+    public ResponseEntity<List<Warehouse>> getWarehouse() {
+        return new ResponseEntity<>(service.getWarehouses(), HttpStatus.OK);
     }
+
+    @PostMapping
+    public ResponseEntity<Warehouse> addWarehouse(@RequestBody Warehouse warehouse) {
+        service.addWarehouse(warehouse);
+        return new ResponseEntity<>(warehouse, HttpStatus.CREATED);
+    }
+
+
 
 }

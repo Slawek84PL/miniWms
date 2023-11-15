@@ -1,27 +1,32 @@
 package pl.slawek.domain.warehouse.service;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.stereotype.Service;
 import pl.slawek.domain.warehouse.Warehouse;
+import pl.slawek.domain.warehouse.repository.WarehouseRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Getter
 @Service
 public class WarehouseService {
 
-    private List<Warehouse> warehouses = new ArrayList<>();
+    private final WarehouseRepository repository;
 
-    public Warehouse addWarehouse(Warehouse warehouse) {
-        warehouses.add(warehouse);
-        return warehouse;
+    public List<Warehouse> getAll() {
+        return repository.findAll();
     }
 
-    public void delete(Warehouse warehouse) {
-        warehouses.remove(warehouse);
+    public Warehouse getOne(long id) {
+        return repository.getReferenceById(id);
+    }
+
+    public Long add(Warehouse warehouse) {
+        warehouse.getShortName().toUpperCase();
+        return repository.save(warehouse).getId();
+    }
+
+    public void delete(long warehouseId) {
+        repository.deleteById(warehouseId);
     }
 }

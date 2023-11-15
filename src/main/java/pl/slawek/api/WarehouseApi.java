@@ -12,26 +12,29 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/warehouse")
+@RequestMapping("/api/v1/warehouse")
 public class WarehouseApi {
 
     private final WarehouseService service;
 
     @GetMapping
-    public ResponseEntity<List<Warehouse>> getWarehouse() {
-        return new ResponseEntity<>(service.getWarehouses(), HttpStatus.OK);
+    public ResponseEntity<List<Warehouse>> getAll() {
+        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Warehouse> getOne(@PathVariable long id) {
+        return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Warehouse> addWarehouse(@Valid @RequestBody Warehouse warehouse) {
-        service.addWarehouse(warehouse);
-        return new ResponseEntity<>(warehouse, HttpStatus.CREATED);
+    public ResponseEntity<Long> add(@Valid @RequestBody Warehouse warehouse) {
+        return new ResponseEntity<>(service.add(warehouse), HttpStatus.CREATED);
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> delete(@RequestBody Warehouse warehouse) {
-        service.delete(warehouse);
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> delete(@PathVariable long id) {
+        service.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

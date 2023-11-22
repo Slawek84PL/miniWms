@@ -31,7 +31,7 @@ public class Warehouse {
     @Size(min = 3, max = 25)
     private String name;
 
-//    @OneToOne
-//    private Address address;
+    @OneToOne
+    private Address address;
 
 }

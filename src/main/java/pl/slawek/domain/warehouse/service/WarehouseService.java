@@ -1,7 +1,10 @@
 package pl.slawek.domain.warehouse.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import pl.slawek.domain.address.Address;
+import pl.slawek.domain.address.repository.AddressRepository;
 import pl.slawek.domain.warehouse.Warehouse;
 import pl.slawek.domain.warehouse.repository.WarehouseRepository;
 
@@ -12,6 +15,7 @@ import java.util.List;
 public class WarehouseService {
 
     private final WarehouseRepository repository;
+    private final AddressRepository addressRepository;
 
     public List<Warehouse> getAll() {
         return repository.findAll();
@@ -28,5 +32,12 @@ public class WarehouseService {
 
     public void delete(long warehouseId) {
         repository.deleteById(warehouseId);
+    }
+
+    public Warehouse setAddress(long warehouseId, long addressId) {
+        Warehouse warehouse = repository.findById(warehouseId).orElseThrow(EntityNotFoundException::new);
+        Address address = addressRepository.findById(addressId).orElseThrow(EntityNotFoundException::new);
+        warehouse.setAddress(address);
+        return repository.save(warehouse);
     }
 }

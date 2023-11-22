@@ -35,8 +35,8 @@ public class WarehouseService {
     }
 
     public Warehouse setAddress(long warehouseId, long addressId) {
-        Warehouse warehouse = repository.findById(warehouseId).orElseThrow(EntityNotFoundException::new);
-        Address address = addressRepository.findById(addressId).orElseThrow(EntityNotFoundException::new);
+        Warehouse warehouse = repository.findById(warehouseId).orElseThrow(() -> new EntityNotFoundException("Warehouse not found for id: " + warehouseId));
+        Address address = addressRepository.findById(addressId).orElseThrow(() -> new EntityNotFoundException("Address not found for id: " + addressId));
         warehouse.setAddress(address);
         return repository.save(warehouse);
     }

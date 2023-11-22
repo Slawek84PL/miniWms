@@ -53,7 +53,7 @@ public class WarehouseApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(EntityNotFoundException.class)
     public String handleException(EntityNotFoundException ex) {
         return ex.getMessage();

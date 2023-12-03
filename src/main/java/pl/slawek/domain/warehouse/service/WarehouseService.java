@@ -15,7 +15,7 @@ import java.util.List;
 public class WarehouseService {
 
     private final WarehouseRepository repository;
-    private final AddressRepository addressRepository;
+    private final AddressService addressService;
 
     public List<Warehouse> getAll() {
         return repository.findAll();
@@ -37,6 +37,7 @@ public class WarehouseService {
     public Warehouse setAddress(long warehouseId, long addressId) {
         Warehouse warehouse = repository.findById(warehouseId).orElseThrow(() -> new EntityNotFoundException("Warehouse not found for id: " + warehouseId));
         Address address = addressRepository.findById(addressId).orElseThrow(() -> new EntityNotFoundException("Address not found for id: " + addressId));
+        Address address = addressService.getOne(addressId);
         warehouse.setAddress(address);
         return repository.save(warehouse);
     }

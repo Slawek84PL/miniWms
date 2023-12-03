@@ -21,8 +21,8 @@ public class AddressService {
         return repository.getReferenceById(id);
     }
 
-    public Long add(Address address) {
-        return repository.save(address).getId();
+    public Address add(Address address) {
+        return repository.save(address);
     }
 
     public void delete(long id) {

@@ -34,7 +34,7 @@ public class AddressApi {
     }
 
     @PostMapping
-    public ResponseEntity<Long> add(@Valid @RequestBody Address address) {
+    public ResponseEntity<Address> add(@Valid @RequestBody Address address) {
         return new ResponseEntity<>(service.add(address), HttpStatus.CREATED);
     }
 

@@ -1,5 +1,6 @@
 package pl.slawek.domain.address.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.slawek.domain.address.Address;
@@ -17,8 +18,8 @@ public class AddressService {
         return repository.findAll();
     }
 
-    public Address getOne(long id) {
-        return repository.getReferenceById(id);
+    public Address getOne(long addressId) {
+        return repository.findById(addressId).orElseThrow(() -> new EntityNotFoundException("Address not found for id: " + addressId));
     }
 
     public Address add(Address address) {

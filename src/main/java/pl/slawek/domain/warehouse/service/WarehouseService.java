@@ -1,6 +1,7 @@
 package pl.slawek.domain.warehouse.service;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.slawek.domain.address.Address;
@@ -38,6 +39,21 @@ public class WarehouseService {
         Warehouse warehouse = getOne(warehouseId);
         Address address = addressService.getOne(addressId);
         warehouse.setAddress(address);
+        return repository.save(warehouse);
+    }
+
+    public Warehouse updateWarehouse(long warehouseId, Warehouse updatedWarehouse) {
+
+        Warehouse warehouse = getOne(warehouseId);
+
+        if(!updatedWarehouse.getShortName().isEmpty()) {
+            warehouse.setShortName(updatedWarehouse.getShortName());
+        }
+
+        if(!updatedWarehouse.getName().isEmpty()) {
+            warehouse.setName(updatedWarehouse.getName());
+        }
+
         return repository.save(warehouse);
     }
 }

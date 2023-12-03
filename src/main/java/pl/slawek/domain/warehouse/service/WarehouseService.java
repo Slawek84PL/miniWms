@@ -28,6 +28,7 @@ public class WarehouseService {
     public Long add(Warehouse warehouse) {
         warehouse.getShortName().toUpperCase();
         return repository.save(warehouse).getId();
+        warehouse.setName(warehouse.getShortName().toUpperCase());
     }
 
     public void delete(long warehouseId) {

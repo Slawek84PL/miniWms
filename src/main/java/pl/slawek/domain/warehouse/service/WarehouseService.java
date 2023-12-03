@@ -46,11 +46,11 @@ public class WarehouseService {
 
         Warehouse warehouse = getOne(warehouseId);
 
-        if(!updatedWarehouse.getShortName().isEmpty()) {
+        if(updatedWarehouse.getShortName() != null) {
             warehouse.setShortName(updatedWarehouse.getShortName());
         }
 
-        if(!updatedWarehouse.getName().isEmpty()) {
+        if(updatedWarehouse.getName() != null) {
             warehouse.setName(updatedWarehouse.getName());
         }
 

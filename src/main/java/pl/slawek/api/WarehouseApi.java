@@ -41,7 +41,7 @@ public class WarehouseApi {
         return new ResponseEntity<>(service.add(warehouse), HttpStatus.CREATED);
     }
 
-    @PutMapping("{warehouseId}/{addressId}")
+    @PutMapping("/set address/{warehouseId}/{addressId}")
     public ResponseEntity<Warehouse> setAddress(@PathVariable long warehouseId, @PathVariable long addressId) {
         return new ResponseEntity<>(service.setAddress(warehouseId, addressId), HttpStatus.OK);
     }

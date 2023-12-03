@@ -26,7 +26,7 @@ public class WarehouseService {
     }
 
     public Warehouse add(Warehouse warehouse) {
-        warehouse.setName(warehouse.getShortName().toUpperCase());
+        warehouse.setShortName(warehouse.getShortName().toUpperCase());
         return repository.save(warehouse);
     }
 

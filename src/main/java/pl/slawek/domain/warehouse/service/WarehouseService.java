@@ -21,8 +21,8 @@ public class WarehouseService {
         return repository.findAll();
     }
 
-    public Warehouse getOne(long id) {
-        return repository.getReferenceById(id);
+    public Warehouse getOne(long warehouseId) {
+        return repository.findById(warehouseId).orElseThrow(() -> new EntityNotFoundException("Warehouse not found for id: " + warehouseId));
     }
 
     public Long add(Warehouse warehouse) {

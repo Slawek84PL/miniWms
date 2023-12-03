@@ -4,7 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.slawek.domain.address.Address;
-import pl.slawek.domain.address.repository.AddressRepository;
+import pl.slawek.domain.address.service.AddressService;
 import pl.slawek.domain.warehouse.Warehouse;
 import pl.slawek.domain.warehouse.repository.WarehouseRepository;
 
@@ -35,8 +35,7 @@ public class WarehouseService {
     }
 
     public Warehouse setAddress(long warehouseId, long addressId) {
-        Warehouse warehouse = repository.findById(warehouseId).orElseThrow(() -> new EntityNotFoundException("Warehouse not found for id: " + warehouseId));
-        Address address = addressRepository.findById(addressId).orElseThrow(() -> new EntityNotFoundException("Address not found for id: " + addressId));
+        Warehouse warehouse = getOne(warehouseId);
         Address address = addressService.getOne(addressId);
         warehouse.setAddress(address);
         return repository.save(warehouse);

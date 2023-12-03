@@ -1,5 +1,6 @@
 package pl.slawek.domain.warehouse;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +27,7 @@ public class Warehouse {
     private Long id;
 
     @Size(min = 3, max = 4)
+    @Column(unique = true)
     private String shortName;
 
     @Size(min = 3, max = 25)

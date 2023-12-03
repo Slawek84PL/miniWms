@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -35,5 +37,19 @@ public class Warehouse {
 
     @OneToOne
     private Address address;
+
+    @PrePersist
+    private void afterCreate() {
+        upperShortName();
+    }
+
+    @PreUpdate
+    private void afterUpdate() {
+        upperShortName();
+    }
+
+    private void upperShortName() {
+        this.shortName = shortName.toUpperCase();
+    }
 
 }

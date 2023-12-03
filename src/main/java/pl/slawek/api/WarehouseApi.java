@@ -37,7 +37,7 @@ public class WarehouseApi {
     }
 
     @PostMapping
-    public ResponseEntity<Long> add(@Valid @RequestBody Warehouse warehouse) {
+    public ResponseEntity<Warehouse> add(@Valid @RequestBody Warehouse warehouse) {
         return new ResponseEntity<>(service.add(warehouse), HttpStatus.CREATED);
     }
 

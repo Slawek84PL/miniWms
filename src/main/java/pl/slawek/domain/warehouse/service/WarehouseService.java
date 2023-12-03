@@ -25,10 +25,9 @@ public class WarehouseService {
         return repository.findById(warehouseId).orElseThrow(() -> new EntityNotFoundException("Warehouse not found for id: " + warehouseId));
     }
 
-    public Long add(Warehouse warehouse) {
-        warehouse.getShortName().toUpperCase();
-        return repository.save(warehouse).getId();
+    public Warehouse add(Warehouse warehouse) {
         warehouse.setName(warehouse.getShortName().toUpperCase());
+        return repository.save(warehouse);
     }
 
     public void delete(long warehouseId) {

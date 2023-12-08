@@ -2,10 +2,8 @@ package pl.slawek.logic;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import pl.slawek.domain.place.Place;
-import pl.slawek.domain.warehouse.Warehouse;
 
 import java.util.ArrayList;
 import java.util.List;

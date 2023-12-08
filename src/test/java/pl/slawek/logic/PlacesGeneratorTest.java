@@ -13,7 +13,7 @@ class PlacesGeneratorTest {
     @Test
     void ShouldGenerateOnePlace() {
 //        when
-        PlacesGenerator placesGenerator = new PlacesGenerator(1,false, 0,1);
+        PlacesGenerator placesGenerator = new PlacesGenerator(1, 1, false, 0, 0, 1, 1);
 //        given
         List<Place> list = placesGenerator.generate();
 //        then
@@ -25,7 +25,7 @@ class PlacesGeneratorTest {
     @Test
     void ShouldGenerateTwoPlaces() {
 //        when
-        PlacesGenerator placesGenerator = new PlacesGenerator(1,false, 0,2);
+        PlacesGenerator placesGenerator = new PlacesGenerator(1, 1, false, 0, 0, 1, 2);
 //        given
         List<Place> list = placesGenerator.generate();
 //        then
@@ -37,7 +37,7 @@ class PlacesGeneratorTest {
     @Test
     void ShouldGenerate10Rows() {
 //        when
-        PlacesGenerator placesGenerator = new PlacesGenerator(10,false, 0,1);
+        PlacesGenerator placesGenerator = new PlacesGenerator(1, 10, false, 0, 0, 1, 1);
 //        given
         List<Place> list = placesGenerator.generate();
 //        then
@@ -49,7 +49,7 @@ class PlacesGeneratorTest {
     @Test
     void ShouldGenerate10Levels() {
 //        when
-        PlacesGenerator placesGenerator = new PlacesGenerator(1,false, 9,1);
+        PlacesGenerator placesGenerator = new PlacesGenerator(1, 1, false, 0, 9, 1, 1);
 //        given
         List<Place> list = placesGenerator.generate();
 //        then
@@ -61,12 +61,18 @@ class PlacesGeneratorTest {
     @Test
     void ShouldGenerate10Places() {
 //        when
-        PlacesGenerator placesGenerator = new PlacesGenerator(1,false, 0,10);
+        PlacesGenerator placesGenerator = new PlacesGenerator(1, 1,false, 0, 0, 1, 10);
 //        given
         List<Place> list = placesGenerator.generate();
 //        then
         assertThat(list.size()).isEqualTo(10);
         assertEquals(list.get(0).getName(), "01-00-01");
         assertEquals(list.get(9).getName(), "01-00-10");
+    }
+
+    @Test
+    void shouldCalculateListSize() {
+        PlacesGenerator placesGenerator = new PlacesGenerator(1, 1, false, 0, 0, 1, 1);
+
     }
 }

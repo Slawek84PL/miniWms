@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import pl.slawek.domain.place.Place;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -13,33 +14,44 @@ public class PlacesGenerator {
 
     @Min(1)
     @Max(99)
-    private int row;
+    private int rowFrom;
+
+    @Min(1)
+    @Max(99)
+    private int rowTo;
 
     private boolean rowAsLetter;
 
     @Min(0)
     @Max(99)
-    private int level;
+    private int levelFrom;
+
+    @Min(0)
+    @Max(99)
+    private int levelTo;
 
     @Min(1)
     @Max(99)
-    private int column;
+    private int columnFrom;
+
+    @Min(1)
+    @Max(99)
+    private int columnTo;
 
     public List<Place> generate() {
-        List<Place> places = new ArrayList<>();
+        List<Place> places = new LinkedList<>();
 
-        for (int i = 1; i <= row; i++) {
+        for (int row = rowFrom; row <= rowTo; row++) {
 
-            for (int j = 0; j <= level; j++) {
+            for (int level = levelFrom; level <= levelTo; level++) {
 
-                for (int k = 1; k <= column; k++) {
-                    places.add(new Place(null, String.format("%02d-%02d-%02d", i, j, k)));
+                for (int column = columnFrom; column <= columnTo; column++) {
+                    places.add(new Place(null, String.format("%02d-%02d-%02d", row, level, column)));
                 }
             }
         }
 
         return places;
     }
-
 
 }

@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import pl.slawek.domain.place.Place;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 

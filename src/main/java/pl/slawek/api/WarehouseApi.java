@@ -60,5 +60,4 @@ public class WarehouseApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
 }

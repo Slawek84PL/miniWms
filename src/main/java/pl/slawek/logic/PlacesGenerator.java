@@ -27,7 +27,7 @@ public class PlacesGenerator {
     @Max(99)
     private int column;
 
-    public List<Place> generate(Warehouse warehouse) {
+    public List<Place> generate() {
         List<Place> places = new ArrayList<>();
 
         for (int i = 1; i <= row; i++) {
@@ -35,7 +35,7 @@ public class PlacesGenerator {
             for (int j = 0; j <= level; j++) {
 
                 for (int k = 1; k <= column; k++) {
-                    places.add(new Place(null, String.format("%02d-%02d-%02d", i, j, k), warehouse));
+                    places.add(new Place(null, String.format("%02d-%02d-%02d", i, j, k)));
                 }
             }
         }

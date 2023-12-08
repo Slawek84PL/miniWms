@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.slawek.domain.place.Place;
 import pl.slawek.domain.place.service.PlacesService;
+import pl.slawek.logic.PlacesGenerator;
 
 import java.util.List;
 
@@ -36,6 +37,12 @@ public class PlaceApi {
     @PostMapping("{warehouseId}")
     public ResponseEntity<Place> add(@PathVariable long warehouseId, @Valid @RequestBody Place place) {
         return new ResponseEntity<>(service.add(warehouseId, place), HttpStatus.CREATED);
+    }
+
+    @PostMapping("{warehouseId}/generateplaces")
+    public ResponseEntity<?> generatePlaces(@PathVariable long warehouseId, @Valid @RequestBody PlacesGenerator placesGenerator) {
+        service.generatePlaces(warehouseId, placesGenerator);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("{id}")

@@ -6,13 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.slawek.domain.address.Address;
-import pl.slawek.domain.address.service.AddressService;
 import pl.slawek.domain.article.Article;
 import pl.slawek.domain.article.service.ArticleService;
 
@@ -38,6 +38,16 @@ public class ArticleApi {
     @PostMapping
     public ResponseEntity<Article> add(@Valid @RequestBody Article article) {
         return new ResponseEntity<>(service.add(article), HttpStatus.CREATED);
+    }
+
+    @PutMapping("{articleId}")
+    public ResponseEntity<Article> update(@PathVariable long articleId, @Valid @RequestBody Article article) {
+        return new ResponseEntity<>(service.updateArticle(articleId, article), HttpStatus.OK);
+    }
+
+    @PatchMapping("{articleId}")
+    public ResponseEntity<Article> updatePart(@PathVariable long articleId, @Valid @RequestBody Article article) {
+        return new ResponseEntity<>(service.updatePartArticle(articleId, article), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")

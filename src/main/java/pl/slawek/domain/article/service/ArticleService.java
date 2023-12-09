@@ -33,13 +33,20 @@ public class ArticleService {
 
     public Article updateArticle(long articleId, Article updatedArticle) {
 
+        updatedArticle.setId(articleId);
+
+        return repository.save(updatedArticle);
+    }
+
+    public Article updatePartArticle(long articleId, Article updatedArticle) {
+
         Article article = getOne(articleId);
 
-        if(updatedArticle.getNumber() != null) {
-            article.setNumber(updatedArticle.getNumber());
+        if (updatedArticle.getEan() != null) {
+            article.setEan(updatedArticle.getEan());
         }
 
-        if(updatedArticle.getName() != null) {
+        if (updatedArticle.getName() != null) {
             article.setName(updatedArticle.getName());
         }
 

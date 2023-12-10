@@ -1,6 +1,7 @@
 package pl.slawek.api;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,41 +14,44 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.slawek.domain.article.Article;
-import pl.slawek.domain.article.service.ArticleService;
+import pl.slawek.domain.company.Company;
+import pl.slawek.domain.company.service.CompanyService;
+import pl.slawek.domain.warehouse.Warehouse;
 
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/article")
-public class ArticleApi {
+@RequestMapping("/api/v1/company")
+public class CompanyApi {
 
-    private final ArticleService service;
+    private final CompanyService service;
 
     @GetMapping
-    public ResponseEntity<List<Article>> getAll() {
+    public ResponseEntity<List<Company>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Article> getOne(@PathVariable long id) {
+    public ResponseEntity<Company> getOne(@PathVariable long id) {
         return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
     }
 
-    @PostMapping("{companyId}")
-    public ResponseEntity<Article> add(@PathVariable long companyId,@Valid @RequestBody Article article) {
-        return new ResponseEntity<>(service.add(companyId, article), HttpStatus.CREATED);
+    @PostMapping
+    public ResponseEntity<Company> add(@Valid @RequestBody Company company) {
+        return new ResponseEntity<>(service.add(company), HttpStatus.CREATED);
     }
 
-    @PutMapping("{articleId}")
-    public ResponseEntity<Article> update(@PathVariable long articleId, @Valid @RequestBody Article article) {
-        return new ResponseEntity<>(service.updateArticle(articleId, article), HttpStatus.OK);
+    @PatchMapping("{companyId}")
+    public ResponseEntity<Company> updateWarehouse(@PathVariable long companyId,
+                                                     @RequestBody @NotNull Company updatedCompany) {
+        return new ResponseEntity<>(service.updateCompany(companyId, updatedCompany), HttpStatus.OK);
+
     }
 
-    @PatchMapping("{articleId}")
-    public ResponseEntity<Article> updatePart(@PathVariable long articleId, @Valid @RequestBody Article article) {
-        return new ResponseEntity<>(service.updatePartArticle(articleId, article), HttpStatus.OK);
+    @PutMapping("/setaddress/{companyId}/{addressId}")
+    public ResponseEntity<Company> setAddress(@PathVariable long companyId, @PathVariable long addressId) {
+        return new ResponseEntity<>(service.setAddress(companyId, addressId), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")

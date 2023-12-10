@@ -3,8 +3,11 @@ package pl.slawek.domain.article.service;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.slawek.domain.article.Article;
 import pl.slawek.domain.article.repository.ArticleRepository;
+import pl.slawek.domain.company.Company;
+import pl.slawek.domain.company.service.CompanyService;
 
 
 import java.util.List;
@@ -14,6 +17,7 @@ import java.util.List;
 public class ArticleService {
 
     private final ArticleRepository repository;
+    private final CompanyService companyService;
 
     public List<Article> getAll() {
         return repository.findAll();
@@ -23,7 +27,10 @@ public class ArticleService {
         return repository.findById(articleId).orElseThrow(() -> new EntityNotFoundException("Article not found for id: " + articleId));
     }
 
-    public Article add(Article article) {
+    @Transactional
+    public Article add(long companyId, Article article) {
+        Company company = companyService.getOne(companyId);
+        company.getArticles().add(article);
         return repository.save(article);
     }
 

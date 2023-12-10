@@ -35,9 +35,9 @@ public class ArticleApi {
         return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Article> add(@Valid @RequestBody Article article) {
-        return new ResponseEntity<>(service.add(article), HttpStatus.CREATED);
+    @PostMapping("{companyId}")
+    public ResponseEntity<Article> add(@PathVariable long companyId,@Valid @RequestBody Article article) {
+        return new ResponseEntity<>(service.add(companyId, article), HttpStatus.CREATED);
     }
 
     @PutMapping("{articleId}")

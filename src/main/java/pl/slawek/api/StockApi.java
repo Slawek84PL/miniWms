@@ -30,6 +30,11 @@ public class StockApi {
         return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
     }
 
+    @GetMapping("/articel/{articleId}")
+    public ResponseEntity<List<Stock>> getAllStockForArticle(@PathVariable long articleId) {
+        return new ResponseEntity<>(service.getAllStockForArticle(articleId), HttpStatus.OK);
+    }
+
     @PostMapping("{articleId}/{placeId}")
     public ResponseEntity<Stock> add(@PathVariable long articleId, @PathVariable long placeId) {
         return new ResponseEntity<>(service.add(articleId, placeId), HttpStatus.CREATED);

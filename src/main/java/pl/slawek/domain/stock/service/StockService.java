@@ -26,9 +26,13 @@ public class StockService {
         return repository.findById(stockId).orElseThrow(() -> new EntityNotFoundException("Stock not found for id: " + stockId));
     }
 
-    public Stock add(long articelId, long placeId) {
+    public List<Stock> getAllStockForArticle(long articleId) {
+        return repository.getAllByArticleId(articleId);
+    }
+
+    public Stock add(long articleId, long placeId) {
         Stock stock = new Stock();
-        stock.setArticle(articleService.getOne(articelId));
+        stock.setArticle(articleService.getOne(articleId));
         stock.setPlace(placesService.getOne(placeId));
 
         return repository.save(stock);

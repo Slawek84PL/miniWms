@@ -25,7 +25,7 @@ public class StockApi {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping({"id"})
+    @GetMapping("{id}")
     public ResponseEntity<Stock> getOne(@PathVariable long id) {
         return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
     }

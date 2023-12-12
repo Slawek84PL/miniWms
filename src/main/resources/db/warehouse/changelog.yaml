@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Slawek84PL
+      changes:
+        - sqlFile:
+            path: db/warehouse/01_initial_schema.sql
+  - changeSet:
+      id: 2
+      author: Slawek84PL
+      changes:
+        - sqlFile:
+            path: db/warehouse/02_first_warehouse.sql

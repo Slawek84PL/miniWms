@@ -17,6 +17,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import pl.slawek.domain.address.Address;
 import pl.slawek.domain.place.Place;
 
@@ -43,6 +45,7 @@ public class Warehouse {
     private String name;
 
     @OneToMany(cascade = CascadeType.REMOVE)
+    @Fetch(FetchMode.SUBSELECT)
     @JoinColumn(name = "warehouse_id")
     private List<Place> places = new ArrayList<>();
 

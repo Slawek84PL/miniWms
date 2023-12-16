@@ -27,20 +27,20 @@ public class PlacesService {
         return repository.findById(placeId).orElseThrow(() -> new EntityNotFoundException("Place not found for id: " + placeId));
     }
 
+    public Place getOne(long warehouseId, long placeId) {
+        return repository.getOneForWarehouse(placeId, warehouseService.getOne(warehouseId)).orElseThrow(() -> new EntityNotFoundException("Place not found for id: " + placeId));
+    }
+
     @Transactional
     public Place add(long warehouseId, Place place) {
-
-        Warehouse warehouse = warehouseService.getOne(warehouseId);
-        warehouse.getPlaces().add(place);
+        place.setWarehouse(warehouseService.getOne(warehouseId));
         return repository.save(place);
     }
 
     @Transactional
     public void generatePlaces(long warehouseId, PlacesGenerator placesGenerator) {
         Warehouse warehouse = warehouseService.getOne(warehouseId);
-        List<Place> places = placesGenerator.generate();
-        warehouse.getPlaces().addAll(places);
-        repository.saveAll(places);
+        repository.saveAll(placesGenerator.generate(warehouse));
     }
 
     public void delete(long placeId) {

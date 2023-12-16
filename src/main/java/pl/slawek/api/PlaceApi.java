@@ -34,6 +34,11 @@ public class PlaceApi {
         return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
     }
 
+    @GetMapping("{warehouseId}/{id}")
+    public ResponseEntity<Place> getOne(@PathVariable long warehouseId, @PathVariable long id) {
+        return new ResponseEntity<>(service.getOne(warehouseId, id), HttpStatus.OK);
+    }
+
     @PostMapping("{warehouseId}")
     public ResponseEntity<Place> add(@PathVariable long warehouseId, @Valid @RequestBody Place place) {
         return new ResponseEntity<>(service.add(warehouseId, place), HttpStatus.CREATED);

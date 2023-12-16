@@ -2,6 +2,7 @@ package pl.slawek.logic;
 
 import org.junit.jupiter.api.Test;
 import pl.slawek.domain.place.Place;
+import pl.slawek.domain.warehouse.Warehouse;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PlacesGeneratorTest {
 
+    private final Warehouse warehouse = new Warehouse();
     @Test
     void ShouldGenerateOnePlace() {
 //        when
@@ -71,7 +73,7 @@ class PlacesGeneratorTest {
     }
 
     private List<Place> getPlaceList(PlacesGenerator placesGenerator) {
-        return placesGenerator.generate();
+        return placesGenerator.generate(warehouse);
     }
 
     @Test

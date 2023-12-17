@@ -45,10 +45,17 @@ public class PlaceApi {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @DeleteMapping
+    public ResponseEntity<?> delete(@PathVariable long warehouseId) {
+        service.deleteAllPlaces(warehouseId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @DeleteMapping("{placeId}")
     public ResponseEntity<?> delete(@PathVariable long warehouseId, @PathVariable long placeId) {
         service.delete(warehouseId, placeId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
 }

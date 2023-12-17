@@ -2,6 +2,7 @@ package pl.slawek.logic;
 
 import org.junit.jupiter.api.Test;
 import pl.slawek.domain.place.Place;
+import pl.slawek.domain.warehouse.Warehouse;
 
 import java.util.List;
 
@@ -10,12 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PlacesGeneratorTest {
 
+    private final Warehouse warehouse = new Warehouse();
     @Test
     void ShouldGenerateOnePlace() {
 //        when
         PlacesGenerator placesGenerator = new PlacesGenerator(1, 1, false, 0, 0, 1, 1);
 //        given
-        List<Place> list = placesGenerator.generate();
+        List<Place> list = getPlaceList(placesGenerator);
 //        then
         assertThat(list.size()).isEqualTo(1);
         assertEquals(list.get(0).getName(), "01-00-01");
@@ -27,7 +29,7 @@ class PlacesGeneratorTest {
 //        when
         PlacesGenerator placesGenerator = new PlacesGenerator(1, 1, false, 0, 0, 1, 2);
 //        given
-        List<Place> list = placesGenerator.generate();
+        List<Place> list = getPlaceList(placesGenerator);
 //        then
         assertThat(list.size()).isEqualTo(2);
         assertEquals(list.get(0).getName(), "01-00-01");
@@ -39,7 +41,7 @@ class PlacesGeneratorTest {
 //        when
         PlacesGenerator placesGenerator = new PlacesGenerator(1, 10, false, 0, 0, 1, 1);
 //        given
-        List<Place> list = placesGenerator.generate();
+        List<Place> list = getPlaceList(placesGenerator);
 //        then
         assertThat(list.size()).isEqualTo(10);
         assertEquals(list.get(0).getName(), "01-00-01");
@@ -51,7 +53,7 @@ class PlacesGeneratorTest {
 //        when
         PlacesGenerator placesGenerator = new PlacesGenerator(1, 1, false, 0, 9, 1, 1);
 //        given
-        List<Place> list = placesGenerator.generate();
+        List<Place> list = getPlaceList(placesGenerator);
 //        then
         assertThat(list.size()).isEqualTo(10);
         assertEquals(list.get(0).getName(), "01-00-01");
@@ -63,11 +65,15 @@ class PlacesGeneratorTest {
 //        when
         PlacesGenerator placesGenerator = new PlacesGenerator(1, 1,false, 0, 0, 1, 10);
 //        given
-        List<Place> list = placesGenerator.generate();
+        List<Place> list = getPlaceList(placesGenerator);
 //        then
         assertThat(list.size()).isEqualTo(10);
         assertEquals(list.get(0).getName(), "01-00-01");
         assertEquals(list.get(9).getName(), "01-00-10");
+    }
+
+    private List<Place> getPlaceList(PlacesGenerator placesGenerator) {
+        return placesGenerator.generate(warehouse);
     }
 
     @Test

@@ -45,9 +45,8 @@ public class Company {
     @OneToOne
     private Address address;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "company_id")
-    private List<Article> articles = new ArrayList<>();
+    @OneToMany(mappedBy = "company", cascade = CascadeType.REMOVE)
+    private List<Article> articles;
 
     @PrePersist
     private void afterCreate() {

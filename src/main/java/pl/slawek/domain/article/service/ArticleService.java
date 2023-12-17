@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.slawek.domain.article.Article;
 import pl.slawek.domain.article.repository.ArticleRepository;
-import pl.slawek.domain.company.Company;
 import pl.slawek.domain.company.service.CompanyService;
 
 
@@ -19,23 +18,32 @@ public class ArticleService {
     private final ArticleRepository repository;
     private final CompanyService companyService;
 
-    public List<Article> getAll() {
-        return repository.findAll();
+    public List<Article> getAll(long companyId) {
+        return repository.findAllByCompany_Id(companyId);
     }
 
     public Article getOne(long articleId) {
+
         return repository.findById(articleId).orElseThrow(() -> new EntityNotFoundException("Article not found for id: " + articleId));
+    }
+
+    public Article getOne(long companyId, long articleId) {
+
+        return repository.findArticleByIdAndCompany(articleId, companyService.getOne(companyId)).orElseThrow(() -> new EntityNotFoundException("Article not found for id: " + articleId));
     }
 
     @Transactional
     public Article add(long companyId, Article article) {
-        Company company = companyService.getOne(companyId);
-        company.getArticles().add(article);
+        article.setCompany(companyService.getOne(companyId));
         return repository.save(article);
     }
 
-    public void delete(long articleId) {
-        repository.deleteById(articleId);
+    public void delete(long companyId, long articleId) {
+        repository.deleteArticleByIdAndCompany_Id(articleId, companyId);
+    }
+
+    public void deleteAllArticles(long companyId) {
+        repository.deleteArticleByCompany_Id(companyId);
     }
 
     public Article updateArticle(long articleId, Article updatedArticle) {

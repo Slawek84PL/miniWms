@@ -19,40 +19,35 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/places")
+@RequestMapping("/api/v1/{warehouseId}/places")
 public class PlaceApi {
 
     private final PlacesService service;
 
     @GetMapping
-    public ResponseEntity<List<Place>> getAll() {
-        return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<Place>> getAll(@PathVariable long warehouseId) {
+        return new ResponseEntity<>(service.getAll(warehouseId), HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Place> getOne(@PathVariable long id) {
-        return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
+    @GetMapping("{placeId}")
+    public ResponseEntity<Place> getOne(@PathVariable long warehouseId, @PathVariable long placeId) {
+        return new ResponseEntity<>(service.getOne(warehouseId, placeId), HttpStatus.OK);
     }
 
-    @GetMapping("{warehouseId}/{id}")
-    public ResponseEntity<Place> getOne(@PathVariable long warehouseId, @PathVariable long id) {
-        return new ResponseEntity<>(service.getOne(warehouseId, id), HttpStatus.OK);
-    }
-
-    @PostMapping("{warehouseId}")
+    @PostMapping()
     public ResponseEntity<Place> add(@PathVariable long warehouseId, @Valid @RequestBody Place place) {
         return new ResponseEntity<>(service.add(warehouseId, place), HttpStatus.CREATED);
     }
 
-    @PostMapping("{warehouseId}/generateplaces")
+    @PostMapping("generateplaces")
     public ResponseEntity<?> generatePlaces(@PathVariable long warehouseId, @Valid @RequestBody PlacesGenerator placesGenerator) {
         service.generatePlaces(warehouseId, placesGenerator);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<?> delete(@PathVariable long id) {
-        service.delete(id);
+    @DeleteMapping("{placeId}")
+    public ResponseEntity<?> delete(@PathVariable long warehouseId, @PathVariable long placeId) {
+        service.delete(warehouseId, placeId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

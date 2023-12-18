@@ -1,7 +1,6 @@
 package pl.slawek.api;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.slawek.domain.company.Company;
 import pl.slawek.domain.company.service.CompanyService;
-import pl.slawek.domain.warehouse.Warehouse;
 
 import java.util.List;
 
@@ -32,9 +30,9 @@ public class CompanyApi {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<Company> getOne(@PathVariable long id) {
-        return new ResponseEntity<>(service.getOne(id), HttpStatus.OK);
+    @GetMapping("{companyId}")
+    public ResponseEntity<Company> getOne(@PathVariable long companyId) {
+        return new ResponseEntity<>(service.getOne(companyId), HttpStatus.OK);
     }
 
     @PostMapping
@@ -44,7 +42,7 @@ public class CompanyApi {
 
     @PatchMapping("{companyId}")
     public ResponseEntity<Company> updateWarehouse(@PathVariable long companyId,
-                                                     @RequestBody @NotNull Company updatedCompany) {
+                                                     @Valid @RequestBody Company updatedCompany) {
         return new ResponseEntity<>(service.updateCompany(companyId, updatedCompany), HttpStatus.OK);
 
     }

@@ -18,15 +18,18 @@ public class ArticleService {
     private final ArticleRepository repository;
     private final CompanyService companyService;
 
+    @Transactional(readOnly = true)
     public List<Article> getAll(long companyId) {
         return repository.findAllByCompany_Id(companyId);
     }
 
+    @Transactional(readOnly = true)
     public Article getOne(long articleId) {
 
         return repository.findById(articleId).orElseThrow(() -> new EntityNotFoundException("Article not found for id: " + articleId));
     }
 
+    @Transactional(readOnly = true)
     public Article getOne(long companyId, long articleId) {
 
         return repository.findArticleByIdAndCompany(articleId, companyService.getOne(companyId)).orElseThrow(() -> new EntityNotFoundException("Article not found for id: " + articleId));
@@ -38,14 +41,17 @@ public class ArticleService {
         return repository.save(article);
     }
 
+    @Transactional
     public void delete(long companyId, long articleId) {
         repository.deleteArticleByIdAndCompany_Id(articleId, companyId);
     }
 
+    @Transactional
     public void deleteAllArticles(long companyId) {
         repository.deleteArticleByCompany_Id(companyId);
     }
 
+    @Transactional
     public Article updateArticle(long articleId, Article updatedArticle) {
 
         updatedArticle.setId(articleId);
@@ -53,6 +59,7 @@ public class ArticleService {
         return repository.save(updatedArticle);
     }
 
+    @Transactional
     public Article updatePartArticle(long articleId, Article updatedArticle) {
 
         Article article = getOne(articleId);

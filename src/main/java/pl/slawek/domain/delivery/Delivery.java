@@ -1,19 +1,23 @@
 package pl.slawek.domain.delivery;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.slawek.domain.article.Article;
 import pl.slawek.domain.company.Company;
-import pl.slawek.domain.place.Place;
+import pl.slawek.domain.delivery.position.Position;
 import pl.slawek.domain.warehouse.Warehouse;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,6 +30,7 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Getter(AccessLevel.PACKAGE)
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
@@ -34,12 +39,7 @@ public class Delivery {
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @ManyToOne
-    @JoinColumn(name = "article_id")
-    private Article article;
-
-    @ManyToOne
-    @JoinColumn(name = "place_id")
-    private Place place;
+    @OneToMany(mappedBy = "delivery", cascade = CascadeType.REMOVE)
+    private List<Position> positions;
 
 }

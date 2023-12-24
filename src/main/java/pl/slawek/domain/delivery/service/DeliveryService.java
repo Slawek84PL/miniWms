@@ -18,7 +18,6 @@ public class DeliveryService {
 
     private final DeliveryRepository repository;
     private final WarehouseService warehouseService;
-    private final PositionRepository positionRepository;
     private final CompanyService companyService;
 
     public Delivery add(long warehouseId, long companyId) {

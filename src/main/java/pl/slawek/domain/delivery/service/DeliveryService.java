@@ -7,7 +7,6 @@ import pl.slawek.domain.company.service.CompanyService;
 import pl.slawek.domain.delivery.Delivery;
 import pl.slawek.domain.delivery.DeliveryDto;
 import pl.slawek.domain.delivery.repository.DeliveryRepository;
-import pl.slawek.domain.delivery.position.PositionRepository;
 import pl.slawek.domain.warehouse.service.WarehouseService;
 
 import java.util.List;
@@ -20,34 +19,32 @@ public class DeliveryService {
     private final WarehouseService warehouseService;
     private final CompanyService companyService;
 
-    public Delivery add(long warehouseId, long companyId) {
+    public DeliveryDto add(long warehouseId, long companyId) {
         Delivery delivery = new Delivery();
         delivery.setWarehouse(warehouseService.getOne(warehouseId));
         delivery.setCompany(companyService.getOne(companyId));
-        return repository.save(delivery);
+        return new DeliveryDto(repository.save(delivery));
     }
 
-    public DeliveryDto getAllDeliveryForWarehouse(long warehouseId) {
-        List<Delivery> deliveries = repository.findDeliveriesByWarehouse_Id(warehouseId);
-
-        if(deliveries.isEmpty()) {
-            throw new EntityNotFoundException("Not found deliveries for warehouse id: " + warehouseId);
-        }
-
-        return new DeliveryDto(deliveries);
-    }
-
-    public DeliveryDto getAllForWarehouseAndCompany(long warehouseId, long companyId) {
+    public List<DeliveryDto> getAllForWarehouseAndCompany(long warehouseId, long companyId) {
         List<Delivery> deliveries = repository.findByWarehouse_IdAndCompany_Id(warehouseId, companyId);
 
         if(deliveries.isEmpty()) {
             throw new EntityNotFoundException("Not found deliveries for warehouse id: " + warehouseId);
         }
 
-        return new DeliveryDto(deliveries);
+        return deliveries.stream().map(DeliveryDto::new).toList();
     }
 
-    public Delivery getOneDeliveryForWarehouse(long warehouseId, long deliveryId) {
-        return repository.findDeliveryByIdAndWarehouse_Id(deliveryId, warehouseId);
+    public DeliveryDto getOneDeliveryForWarehouse(long warehouseId, long deliveryId) {
+        return new DeliveryDto(repository.findDeliveryByIdAndWarehouse_Id(deliveryId, warehouseId));
+    }
+
+    public List<DeliveryDto> getAllForWarehouse(long warehouseId) {
+        return repository.findDeliveriesByWarehouse_Id(warehouseId).stream().map(DeliveryDto::new).toList();
+    }
+
+    public Delivery getOne(long deliveryId) {
+        return repository.findById(deliveryId).orElseThrow(() -> new EntityNotFoundException("Delivery not found for id: " + deliveryId));
     }
 }

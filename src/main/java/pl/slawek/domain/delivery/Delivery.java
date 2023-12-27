@@ -8,11 +8,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import pl.slawek.domain.company.Company;
 import pl.slawek.domain.delivery.position.Position;
 import pl.slawek.domain.warehouse.Warehouse;
@@ -30,7 +31,6 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter(AccessLevel.PACKAGE)
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
     private Warehouse warehouse;
@@ -40,6 +40,7 @@ public class Delivery {
     private Company company;
 
     @OneToMany(mappedBy = "delivery", cascade = CascadeType.REMOVE)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Position> positions;
 
 }

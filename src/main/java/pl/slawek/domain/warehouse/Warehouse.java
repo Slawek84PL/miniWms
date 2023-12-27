@@ -1,5 +1,6 @@
 package pl.slawek.domain.warehouse;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,9 +12,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,8 +39,7 @@ public class Warehouse {
     @Size(min = 3, max = 25)
     private String name;
 
-
-    @Getter(AccessLevel.PACKAGE)
+    @JsonIgnore
     @OneToMany(mappedBy = "warehouse", cascade = CascadeType.REMOVE)
     private List<Place> places;
 

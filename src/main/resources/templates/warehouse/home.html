@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini WMS</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/b82494a4e0.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <span class="title">Mini WMS</span>
+    </header>
+    <div class="main-content">
+        <div class="item" th:each="warehouse: ${warehouses}">
+            <div class="item-name" th:text="${warehouse.getShortName()}"></div>
+            <div class="item-name-address" th:text="${warehouse.getAddress().getStreet()} + ' ' + ${warehouse.getAddress().getNumber()}"></div>
+            <div class="item-name-address" th:text="${warehouse.getAddress().getPostCode()} + ' ' + ${warehouse.getAddress().getCity()}"></div>
+            <div class="item-name-address" th:text="${warehouse.getAddress().getCountry()}"></div>
+            <div class="material-icons-outlined">warehouse</div>
+        </div>
+    </div>
+
+</body>
+</html>

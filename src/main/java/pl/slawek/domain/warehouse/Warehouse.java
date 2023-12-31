@@ -11,9 +11,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.validation.constraints.Size;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,8 +38,6 @@ public class Warehouse {
     @Size(min = 3, max = 25)
     private String name;
 
-
-    @Getter(AccessLevel.PACKAGE)
     @OneToMany(mappedBy = "warehouse", cascade = CascadeType.REMOVE)
     private List<Place> places;
 

@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface WarehouseRepository extends JpaRepository<Warehouse, Long> {
 
-    @Override
-    @Query("select distinct w from Warehouse w join fetch w.address")
-    List<Warehouse> findAll();
+    @Query("select w from Warehouse w join fetch w.address join fetch w.places")
+    List<Warehouse> findAllWarehouseWithAddressAndPlaces();
 }

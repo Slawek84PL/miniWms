@@ -29,7 +29,7 @@ public class WarehouseService {
         return repository.findById(warehouseId).orElseThrow(() -> new EntityNotFoundException("Warehouse not found for id: " + warehouseId));
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public Warehouse add(Warehouse warehouse) {
         return repository.save(warehouse);
     }

@@ -11,3 +11,5 @@ databaseChangeLog:
       file: db/place/changelog.yaml
   - include:
       file: db/stock/changelog.yaml
+  - include:
+      file: db/delivery/changelog.yaml

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="auto">
+<th:block th:replace="~{manager/warehouse/fragments :: head}"></th:block>
+
+<div class="container py-3">
+    <th:block th:replace="~{manager/warehouse/fragments :: header}"></th:block>
+
+    <main>
+        <div class="table-responsive">
+            <table class="table" th:if="${deliveries.size()} != 0">
+                <thead>
+                <tr>
+                    <th scope="col">Magazyn</th>
+                    <th scope="col">Numer dostawy</th>
+                    <th scope="col">Dostawca</th>
+                    <th scope="col">Ilość pozycji</th>
+                    <th scope="col">#</th>
+                </tr>
+                </thead>
+                <tbody th:each="delivery : ${deliveries}">
+                <tr>
+                    <td th:text="${delivery.getWarehouse()}">Magazyn</td>
+                    <td th:text="${delivery.getDeliveryId()}">id dostawy</td>
+                    <td th:text="${delivery.getCompanyName()}">nazwa dostawcy</td>
+                    <td th:text="${delivery.getPositions().size()}">ilośc pozycji</td>
+                    <td>miejsce na przycisk z linkiem</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <th:block th:replace="~{manager/warehouse/fragments :: footer}"></th:block>
+
+</div>
+<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

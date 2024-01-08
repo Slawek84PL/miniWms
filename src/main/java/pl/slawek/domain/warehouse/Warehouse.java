@@ -1,6 +1,5 @@
 package pl.slawek.domain.warehouse;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,7 +38,6 @@ public class Warehouse {
     @Size(min = 3, max = 25)
     private String name;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "warehouse", cascade = CascadeType.REMOVE)
     private List<Place> places;
 

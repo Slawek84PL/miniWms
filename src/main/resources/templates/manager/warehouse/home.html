@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-bs-theme="auto">
+<th:block th:replace="~{manager/warehouse/fragments :: head}"></th:block>
+
+<div class="container py-3">
+    <th:block th:replace="~{manager/warehouse/fragments :: header}"></th:block>
+
+    <main>
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 fw-normal text-body-emphasis">Magazyny</h1>
+            <!--            <p class="fs-5 text-body-secondary">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>-->
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col" th:each="warehouse: ${warehouses}">
+                <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                    <div class="card-header py-3 text-bg-primary border-primary">
+                        <h4 class="my-0 fw-normal" th:text="${warehouse.getShortName()}">Enterprise</h4>
+                    </div>
+                    <div class="card-body">
+                        <h1 class="card-title pricing-card-title" th:text="${warehouse.getName()}">$29<small class="text-body-secondary fw-light"></small></h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li th:text="${warehouse.getAddress().getStreet()} + ' ' + ${warehouse.getAddress().getNumber()}"></li>
+                            <li th:text="${warehouse.getAddress().getPostCode()} + ' ' + ${warehouse.getAddress().getCity()}"></li>
+                            <li th:text="${warehouse.getAddress().getCountry()}"></li>
+                        </ul>
+                            <a class="w-100 btn btn-lg btn-success" th:href="@{'/manager/' + ${warehouse.getId()}}" role="button">Wejdź do magazynu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="display-6 text-center mb-4">Dane podstawowe</h2>
+
+        <div class="table-responsive">
+            <table class="table text-center">
+                <thead>
+                <tr>
+                    <th style="width: 34%;"></th>
+                    <th style="width: 22%;" th:each="warehouse : ${warehouses}" th:text="${warehouse.getName()}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row" class="text-start">Ilość miejsc na magazynie</th>
+                    <td th:each="warehouse : ${warehouses}" th:text="${warehouse.getPlaces().size()}"></td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-start">Private</th>
+                    <td></td>
+                    <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+                    <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <th:block th:replace="~{manager/warehouse/fragments :: footer}"></th:block>
+
+</div>
+<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

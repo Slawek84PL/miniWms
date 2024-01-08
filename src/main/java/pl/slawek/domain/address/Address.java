@@ -27,7 +27,7 @@ public class Address {
     private String country;
 
     @NotBlank
-    @Size(min = 5, max = 5)
+    @Size(min = 5, max = 6)
     private String postCode;
 
     @NotBlank
@@ -38,6 +38,8 @@ public class Address {
     @Size(min = 2, max = 50)
     private String street;
 
-    private int number;
+    @NotBlank
+    @Size(min =1, max = 5)
+    private String number;
 
 }

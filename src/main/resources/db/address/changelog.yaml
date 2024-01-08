@@ -11,3 +11,9 @@ databaseChangeLog:
       changes:
         - sqlFile:
             path: db/address/02_first_address.sql
+  - changeSet:
+      id: 3
+      author: Slawek84PL
+      changes:
+        - sqlFile:
+            path: db/address/03_update_address.sql

@@ -1,12 +1,12 @@
-package pl.slawek.domain.stock.service;
+package pl.slawek.domain.warehouse.stock.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.slawek.domain.article.service.ArticleService;
-import pl.slawek.domain.place.service.PlacesService;
-import pl.slawek.domain.stock.Stock;
-import pl.slawek.domain.stock.repository.StockRepository;
+import pl.slawek.domain.company.article.service.ArticleService;
+import pl.slawek.domain.warehouse.place.service.PlacesService;
+import pl.slawek.domain.warehouse.stock.Stock;
+import pl.slawek.domain.warehouse.stock.repository.StockRepository;
 
 import java.util.List;
 

@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.slawek.domain.BaseCompanyData;
-import pl.slawek.domain.article.Article;
+import pl.slawek.domain.company.article.Article;
 
 import java.util.List;
 

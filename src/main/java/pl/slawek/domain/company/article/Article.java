@@ -1,4 +1,4 @@
-package pl.slawek.domain.article;
+package pl.slawek.domain.company.article;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;

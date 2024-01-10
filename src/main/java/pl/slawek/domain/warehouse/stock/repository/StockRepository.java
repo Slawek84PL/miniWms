@@ -1,9 +1,9 @@
-package pl.slawek.domain.stock.repository;
+package pl.slawek.domain.warehouse.stock.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
-import pl.slawek.domain.stock.Stock;
+import pl.slawek.domain.warehouse.stock.Stock;
 
 import java.util.List;
 

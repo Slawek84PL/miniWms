@@ -11,9 +11,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.slawek.domain.article.Article;
+import pl.slawek.domain.company.article.Article;
 import pl.slawek.domain.delivery.Delivery;
-import pl.slawek.domain.place.Place;
+import pl.slawek.domain.warehouse.place.Place;
 
 @AllArgsConstructor
 @NoArgsConstructor

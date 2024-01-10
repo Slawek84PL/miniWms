@@ -4,10 +4,10 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.slawek.domain.article.Article;
+import pl.slawek.domain.company.article.Article;
 import pl.slawek.domain.delivery.Delivery;
 import pl.slawek.domain.delivery.service.DeliveryService;
-import pl.slawek.domain.place.Place;
+import pl.slawek.domain.warehouse.place.Place;
 
 @RequiredArgsConstructor
 @Service

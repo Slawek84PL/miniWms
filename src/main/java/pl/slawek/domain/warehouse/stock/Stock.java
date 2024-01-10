@@ -1,4 +1,4 @@
-package pl.slawek.domain.stock;
+package pl.slawek.domain.warehouse.stock;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,8 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.slawek.domain.article.Article;
-import pl.slawek.domain.place.Place;
+import pl.slawek.domain.company.article.Article;
+import pl.slawek.domain.warehouse.place.Place;
 
 @AllArgsConstructor
 @NoArgsConstructor

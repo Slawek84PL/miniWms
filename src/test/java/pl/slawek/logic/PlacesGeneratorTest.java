@@ -1,7 +1,7 @@
 package pl.slawek.logic;
 
 import org.junit.jupiter.api.Test;
-import pl.slawek.domain.place.Place;
+import pl.slawek.domain.warehouse.place.Place;
 import pl.slawek.domain.warehouse.Warehouse;
 
 import java.util.List;

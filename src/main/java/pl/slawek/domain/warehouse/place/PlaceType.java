@@ -1,4 +1,4 @@
-package pl.slawek.domain.place;
+package pl.slawek.domain.warehouse.place;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

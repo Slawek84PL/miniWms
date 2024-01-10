@@ -1,4 +1,4 @@
-package pl.slawek.domain.place;
+package pl.slawek.domain.warehouse.place;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

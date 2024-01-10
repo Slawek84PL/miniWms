@@ -1,8 +1,8 @@
-package pl.slawek.domain.article.repository;
+package pl.slawek.domain.company.article.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.slawek.domain.article.Article;
+import pl.slawek.domain.company.article.Article;
 import pl.slawek.domain.company.Company;
 
 import java.util.List;

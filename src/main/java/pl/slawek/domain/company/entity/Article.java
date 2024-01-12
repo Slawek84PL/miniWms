@@ -1,4 +1,4 @@
-package pl.slawek.domain.company.article;
+package pl.slawek.domain.company.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
@@ -15,7 +15,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.EAN;
-import pl.slawek.domain.company.Company;
 
 @AllArgsConstructor
 @NoArgsConstructor

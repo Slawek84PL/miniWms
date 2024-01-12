@@ -3,8 +3,8 @@ package pl.slawek.logic;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
-import pl.slawek.domain.warehouse.place.Place;
-import pl.slawek.domain.warehouse.Warehouse;
+import pl.slawek.domain.warehouse.entity.Place;
+import pl.slawek.domain.warehouse.entity.Warehouse;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -46,7 +46,7 @@ public class PlacesGenerator {
             for (int level = levelFrom; level <= levelTo; level++) {
 
                 for (int column = columnFrom; column <= columnTo; column++) {
-                    places.add(new Place(null, String.format("%02d-%02d-%02d", row, level, column), warehouse));
+                    places.add(new Place(null, String.format("%02d-%02d-%02d", row, level, column), row, level, column,  warehouse));
                 }
             }
         }

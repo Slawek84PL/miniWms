@@ -1,4 +1,4 @@
-package pl.slawek.domain.delivery.position;
+package pl.slawek.domain.delivery.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
@@ -11,9 +11,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.slawek.domain.company.article.Article;
-import pl.slawek.domain.delivery.Delivery;
-import pl.slawek.domain.warehouse.place.Place;
+import pl.slawek.domain.company.entity.Article;
+import pl.slawek.domain.warehouse.entity.Place;
 
 @AllArgsConstructor
 @NoArgsConstructor

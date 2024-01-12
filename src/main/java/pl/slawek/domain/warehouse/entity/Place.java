@@ -1,4 +1,4 @@
-package pl.slawek.domain.warehouse.place;
+package pl.slawek.domain.warehouse.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,13 +8,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.slawek.domain.warehouse.Warehouse;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,6 +33,18 @@ public class Place {
 
     @Size(min = 2, max = 15)
     private String name;
+
+    @Min(1)
+    @Max(99)
+    private int row;
+
+    @Min(0)
+    @Max(99)
+    private int level;
+
+    @Min(1)
+    @Max(99)
+    private int place;
 
     @Getter(AccessLevel.PACKAGE)
     @ManyToOne

@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.slawek.domain.warehouse.stock.Stock;
-import pl.slawek.domain.warehouse.stock.service.StockService;
+import pl.slawek.domain.warehouse.entity.Stock;
+import pl.slawek.domain.warehouse.service.StockService;
 
 import java.util.List;
 

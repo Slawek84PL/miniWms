@@ -1,12 +1,11 @@
-package pl.slawek.domain.company.article.service;
+package pl.slawek.domain.company.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.slawek.domain.company.article.Article;
-import pl.slawek.domain.company.article.repository.ArticleRepository;
-import pl.slawek.domain.company.service.CompanyService;
+import pl.slawek.domain.company.entity.Article;
+import pl.slawek.domain.company.repository.ArticleRepository;
 
 
 import java.util.List;

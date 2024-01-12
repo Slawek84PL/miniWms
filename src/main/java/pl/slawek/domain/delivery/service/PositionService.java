@@ -1,13 +1,14 @@
-package pl.slawek.domain.delivery.position;
+package pl.slawek.domain.delivery.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.slawek.domain.company.article.Article;
-import pl.slawek.domain.delivery.Delivery;
-import pl.slawek.domain.delivery.service.DeliveryService;
-import pl.slawek.domain.warehouse.place.Place;
+import pl.slawek.domain.company.entity.Article;
+import pl.slawek.domain.delivery.entity.Delivery;
+import pl.slawek.domain.delivery.entity.Position;
+import pl.slawek.domain.delivery.repository.PositionRepository;
+import pl.slawek.domain.warehouse.entity.Place;
 
 @RequiredArgsConstructor
 @Service

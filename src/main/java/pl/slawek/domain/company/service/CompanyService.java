@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.slawek.domain.address.Address;
 import pl.slawek.domain.address.service.AddressService;
-import pl.slawek.domain.company.Company;
+import pl.slawek.domain.company.entity.Company;
 import pl.slawek.domain.company.repository.CompanyRepository;
 
 import java.util.List;

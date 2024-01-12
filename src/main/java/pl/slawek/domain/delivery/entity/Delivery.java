@@ -1,4 +1,4 @@
-package pl.slawek.domain.delivery;
+package pl.slawek.domain.delivery.entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -14,9 +14,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import pl.slawek.domain.company.Company;
-import pl.slawek.domain.delivery.position.Position;
-import pl.slawek.domain.warehouse.Warehouse;
+import pl.slawek.domain.company.entity.Company;
+import pl.slawek.domain.warehouse.entity.Warehouse;
 
 import java.util.List;
 

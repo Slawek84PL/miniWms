@@ -1,5 +1,6 @@
-package pl.slawek.domain.warehouse;
+package pl.slawek.domain.company.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -8,7 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.slawek.domain.BaseCompanyData;
-import pl.slawek.domain.warehouse.place.Place;
 
 import java.util.List;
 
@@ -17,8 +17,10 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Warehouse extends BaseCompanyData {
+public class Company extends BaseCompanyData {
 
-    @OneToMany(mappedBy = "warehouse", cascade = CascadeType.REMOVE)
-    private List<Place> places;
+    @OneToMany(mappedBy = "company", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Article> articles;
+
 }

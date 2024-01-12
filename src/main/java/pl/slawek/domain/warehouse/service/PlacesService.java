@@ -1,13 +1,12 @@
-package pl.slawek.domain.warehouse.place.service;
+package pl.slawek.domain.warehouse.service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.slawek.domain.warehouse.place.Place;
-import pl.slawek.domain.warehouse.place.repository.PlaceRepository;
-import pl.slawek.domain.warehouse.Warehouse;
-import pl.slawek.domain.warehouse.service.WarehouseService;
+import pl.slawek.domain.warehouse.entity.Place;
+import pl.slawek.domain.warehouse.repository.PlaceRepository;
+import pl.slawek.domain.warehouse.entity.Warehouse;
 import pl.slawek.logic.PlacesGenerator;
 
 import java.util.List;

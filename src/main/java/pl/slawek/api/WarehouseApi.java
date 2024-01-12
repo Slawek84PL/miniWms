@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pl.slawek.domain.warehouse.Warehouse;
+import pl.slawek.domain.warehouse.entity.Warehouse;
 import pl.slawek.domain.warehouse.service.WarehouseService;
 
 import java.util.List;

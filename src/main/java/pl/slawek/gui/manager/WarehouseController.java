@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.slawek.domain.delivery.service.DeliveryService;
-import pl.slawek.domain.warehouse.Warehouse;
+import pl.slawek.domain.warehouse.entity.Warehouse;
 import pl.slawek.domain.warehouse.service.WarehouseService;
 
 @RequiredArgsConstructor

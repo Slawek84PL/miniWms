@@ -46,7 +46,7 @@ public class PlacesGenerator {
             for (int level = levelFrom; level <= levelTo; level++) {
 
                 for (int column = columnFrom; column <= columnTo; column++) {
-                    places.add(new Place(null, String.format("%02d-%02d-%02d", row, level, column), warehouse));
+                    places.add(new Place(null, String.format("%02d-%02d-%02d", row, level, column), row, level, column,  warehouse));
                 }
             }
         }

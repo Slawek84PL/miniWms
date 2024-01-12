@@ -4,7 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.slawek.domain.company.service.ArticleService;
-import pl.slawek.domain.warehouse.Stock;
+import pl.slawek.domain.warehouse.entity.Stock;
 import pl.slawek.domain.warehouse.repository.StockRepository;
 
 import java.util.List;

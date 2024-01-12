@@ -2,8 +2,8 @@ package pl.slawek.domain.delivery.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import pl.slawek.domain.delivery.Delivery;
-import pl.slawek.domain.delivery.Position;
+import pl.slawek.domain.delivery.entity.Delivery;
+import pl.slawek.domain.delivery.entity.Position;
 
 import java.util.ArrayList;
 import java.util.List;

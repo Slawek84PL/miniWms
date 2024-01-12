@@ -3,7 +3,7 @@ package pl.slawek.domain.warehouse.repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
-import pl.slawek.domain.warehouse.Stock;
+import pl.slawek.domain.warehouse.entity.Stock;
 
 import java.util.List;
 

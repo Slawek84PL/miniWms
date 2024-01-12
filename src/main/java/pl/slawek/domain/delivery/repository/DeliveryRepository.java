@@ -2,7 +2,7 @@ package pl.slawek.domain.delivery.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import pl.slawek.domain.delivery.Delivery;
+import pl.slawek.domain.delivery.entity.Delivery;
 
 import java.util.List;
 

@@ -1,45 +1,42 @@
-package pl.slawek.domain.delivery;
+package pl.slawek.domain.company.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import pl.slawek.domain.company.Company;
-import pl.slawek.domain.warehouse.Warehouse;
-
-import java.util.List;
+import org.hibernate.validator.constraints.EAN;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-public class Delivery {
+public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "warehouse_id")
-    private Warehouse warehouse;
+    @EAN
+    @Column(unique = true, nullable = false)
+    private String ean;
 
-    @ManyToOne
+    @NotNull
+    private String name;
+
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "company_id")
     private Company company;
-
-    @OneToMany(mappedBy = "delivery", cascade = CascadeType.REMOVE)
-    @Fetch(FetchMode.SUBSELECT)
-    private List<Position> positions;
 
 }

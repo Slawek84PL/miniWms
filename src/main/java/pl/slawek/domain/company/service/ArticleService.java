@@ -4,7 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.slawek.domain.company.Article;
+import pl.slawek.domain.company.entity.Article;
 import pl.slawek.domain.company.repository.ArticleRepository;
 
 

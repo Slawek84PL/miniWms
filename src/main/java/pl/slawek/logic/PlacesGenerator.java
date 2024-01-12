@@ -3,8 +3,8 @@ package pl.slawek.logic;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
-import pl.slawek.domain.warehouse.Place;
-import pl.slawek.domain.warehouse.Warehouse;
+import pl.slawek.domain.warehouse.entity.Place;
+import pl.slawek.domain.warehouse.entity.Warehouse;
 
 import java.util.LinkedList;
 import java.util.List;

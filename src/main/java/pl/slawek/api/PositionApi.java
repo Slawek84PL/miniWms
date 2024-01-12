@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pl.slawek.domain.delivery.Position;
+import pl.slawek.domain.delivery.entity.Position;
 import pl.slawek.domain.delivery.service.PositionService;
 
 @RequiredArgsConstructor

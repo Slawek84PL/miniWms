@@ -1,6 +1,5 @@
-package pl.slawek.domain.company;
+package pl.slawek.domain.warehouse.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -17,10 +16,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Company extends BaseCompanyData {
+public class Warehouse extends BaseCompanyData {
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    private List<Article> articles;
-
+    @OneToMany(mappedBy = "warehouse", cascade = CascadeType.REMOVE)
+    private List<Place> places;
 }

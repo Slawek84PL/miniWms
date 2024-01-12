@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.slawek.domain.company.Company;
+import pl.slawek.domain.company.entity.Company;
 import pl.slawek.domain.company.service.CompanyService;
 
 import java.util.List;

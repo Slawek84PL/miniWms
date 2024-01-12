@@ -4,9 +4,9 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.slawek.domain.warehouse.Place;
+import pl.slawek.domain.warehouse.entity.Place;
 import pl.slawek.domain.warehouse.repository.PlaceRepository;
-import pl.slawek.domain.warehouse.Warehouse;
+import pl.slawek.domain.warehouse.entity.Warehouse;
 import pl.slawek.logic.PlacesGenerator;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package pl.slawek.domain.delivery.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.slawek.domain.delivery.Position;
+import pl.slawek.domain.delivery.entity.Position;
 
 import java.util.List;
 

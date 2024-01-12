@@ -15,7 +15,6 @@ import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import pl.slawek.domain.company.Company;
-import pl.slawek.domain.delivery.position.Position;
 import pl.slawek.domain.warehouse.Warehouse;
 
 import java.util.List;

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.slawek.domain.warehouse.place.Place;
-import pl.slawek.domain.warehouse.place.service.PlacesService;
+import pl.slawek.domain.warehouse.Place;
+import pl.slawek.domain.warehouse.service.PlacesService;
 import pl.slawek.logic.PlacesGenerator;
 
 import java.util.List;

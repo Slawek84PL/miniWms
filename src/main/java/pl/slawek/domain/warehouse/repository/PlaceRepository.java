@@ -1,9 +1,9 @@
-package pl.slawek.domain.warehouse.place.repository;
+package pl.slawek.domain.warehouse.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import pl.slawek.domain.warehouse.place.Place;
+import pl.slawek.domain.warehouse.Place;
 import pl.slawek.domain.warehouse.Warehouse;
 
 import java.util.List;

@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.slawek.domain.company.service.CompanyService;
 import pl.slawek.domain.delivery.Delivery;
-import pl.slawek.domain.delivery.DeliveryDto;
+import pl.slawek.domain.delivery.dto.DeliveryDto;
 import pl.slawek.domain.delivery.repository.DeliveryRepository;
 import pl.slawek.domain.warehouse.service.WarehouseService;
 

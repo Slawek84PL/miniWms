@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.slawek.domain.BaseCompanyData;
-import pl.slawek.domain.warehouse.place.Place;
 
 import java.util.List;
 

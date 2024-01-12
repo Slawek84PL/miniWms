@@ -1,6 +1,5 @@
-package pl.slawek.domain.delivery.position;
+package pl.slawek.domain.warehouse;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,25 +10,18 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.slawek.domain.company.article.Article;
-import pl.slawek.domain.delivery.Delivery;
-import pl.slawek.domain.warehouse.place.Place;
+import pl.slawek.domain.company.Article;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-public class Position {
+public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "delivery_id")
-    @JsonIgnore
-    private Delivery delivery;
 
     @ManyToOne
     @JoinColumn(name = "article_id")

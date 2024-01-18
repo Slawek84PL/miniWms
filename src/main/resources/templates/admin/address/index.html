@@ -26,15 +26,16 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title col-10">DataTable with minimal features & hover style</h3>
-                                <a th:href="@{/admin/address/add}" class="btn btn-success col-2" role="button">Add</a>
+                                <h3 class="card-title col-11">Address table</h3>
+                                <a th:href="@{/admin/address/add}" class="btn btn-success col-1" role="button">Add new</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
-                                        <th class="col-3">Miejscowość</th>
+                                        <th class="col-1">ID</th>
+                                        <th class="col-2">Miejscowość</th>
                                         <th class="col-2" >Ulica</th>
                                         <th class="col-2">Numer</th>
                                         <th class="col-2">Kod pocztowy</th>
@@ -43,6 +44,7 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="address : ${addresses}">
+                                        <td th:text="${address.getId()}">Win 95+</td>
                                         <td th:text="${address.getCity()}">Win 95+</td>
                                         <td th:text="${address.getStreet()}">Trident</td>
                                         <td th:text="${address.getNumber()}">Internet Explorer 4.0</td>
@@ -52,6 +54,7 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
+                                        <th>ID</th>
                                         <th>Miejscowość</th>
                                         <th>Ulica</th>
                                         <th>Numer</th>

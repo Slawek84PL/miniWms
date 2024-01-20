@@ -54,6 +54,8 @@
                                         <td>
                                         <a th:href="@{'/admin/address/delete/' + ${address.getId()}}" class="btn btn-danger btn-sm">
                                             <i class="nav-icon fas fa-trash"></i></a>
+                                            <a th:href="@{'/admin/address/edit/' + ${address.getId()}}" class="btn btn-info btn-sm">
+                                                <i class="nav-icon fas fa-edit"></i></a>
                                         </td>
                                     </tr>
                                     </tbody>

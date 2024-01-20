@@ -43,4 +43,10 @@ public class AddressAdminViewController {
         addressService.delete(addressId);
         return "redirect:/admin/address";
     }
+
+    @GetMapping("edit/{addressId}")
+    public String edit(@PathVariable long addressId, Model model) {
+        model.addAttribute("address", addressService.getOne(addressId));
+        return "admin/address/edit";
+    }
 }

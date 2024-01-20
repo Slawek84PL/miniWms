@@ -45,12 +45,12 @@
                                     </thead>
                                     <tbody>
                                     <tr th:each="address : ${addresses}">
-                                        <td th:text="${address.getId()}">Win 95+</td>
-                                        <td th:text="${address.getCity()}">Win 95+</td>
-                                        <td th:text="${address.getStreet()}">Trident</td>
-                                        <td th:text="${address.getNumber()}">Internet Explorer 4.0</td>
-                                        <td th:text="${address.getPostCode()}"> 4</td>
-                                        <td th:text="${address.getCountry()}">X</td>
+                                        <td th:text="${address.getId()}"></td>
+                                        <td th:text="${address.getCity()}"></td>
+                                        <td th:text="${address.getStreet()}"></td>
+                                        <td th:text="${address.getNumber()}"></td>
+                                        <td th:text="${address.getPostCode()}"></td>
+                                        <td th:text="${address.getCountry()}"></td>
                                         <td>
                                         <a th:href="@{'/admin/address/delete/' + ${address.getId()}}" class="btn btn-danger btn-sm">
                                             <i class="nav-icon fas fa-trash"></i></a>

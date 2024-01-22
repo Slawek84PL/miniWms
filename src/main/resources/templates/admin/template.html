@@ -201,7 +201,7 @@
                     <li class="nav-item">
                         <a th:href="@{/admin/warehouses}" class="nav-link">
                             <i class="nav-icon material-icons-outlined">warehouse</i>
-                            <p>
+                            <p th:text="#{menu.warehouse}">
                                 Warehouses
                             </p>
                         </a>
@@ -209,7 +209,7 @@
                     <li class="nav-item">
                         <a th:href="@{'/admin/companies'}" class="nav-link">
                             <i class="nav-icon material-icons-outlined">factory</i>
-                            <p>
+                            <p th:text="#{menu.companies}">
                                 Companies
                             </p>
                         </a>
@@ -217,7 +217,7 @@
                     <li class="nav-item">
                         <a th:href="@{'/admin/address'}" class="nav-link">
                             <i class="nav-icon material-icons-outlined">where_to_vote</i>
-                            <p>
+                            <p th:text="#{menu.address}">
                                 Address
                             </p>
                         </a>

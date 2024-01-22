@@ -40,13 +40,6 @@
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
-            <!--i18n-->
-            <li class="nav-item">
-                <a class="btn-sm" href="?lang=pl"><img src="/images/flags/flag_PL.png" alt="PL"></a>
-                <a class="btn-sm" href="/?lang=de"><img src="/images/flags/flag_DE.png" alt="DE"></a>
-                <a class="btn-sm" href="/?lang=gb"><img src="/images/flags/flag_GB.png" alt="GB"></a>
-            </li>
-            <!--i18n End-->
             <!-- Navbar Search -->
             <li class="nav-item">
                 <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -208,7 +201,7 @@
                     <li class="nav-item">
                         <a th:href="@{/admin/warehouses}" class="nav-link">
                             <i class="nav-icon material-icons-outlined">warehouse</i>
-                            <p>
+                            <p th:text="#{menu.warehouse}">
                                 Warehouses
                             </p>
                         </a>
@@ -216,7 +209,7 @@
                     <li class="nav-item">
                         <a th:href="@{'/admin/companies'}" class="nav-link">
                             <i class="nav-icon material-icons-outlined">factory</i>
-                            <p>
+                            <p th:text="#{menu.companies}">
                                 Companies
                             </p>
                         </a>
@@ -224,7 +217,7 @@
                     <li class="nav-item">
                         <a th:href="@{'/admin/address'}" class="nav-link">
                             <i class="nav-icon material-icons-outlined">where_to_vote</i>
-                            <p>
+                            <p th:text="#{menu.address}">
                                 Address
                             </p>
                         </a>

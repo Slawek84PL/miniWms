@@ -16,7 +16,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <th:block th:replace="~{admin/template :: contentHeader(contentName = 'Address')}"></th:block>
+        <th:block th:replace="~{admin/template :: contentHeader(contentName = #{menu.address})}"></th:block>
         <!-- /.content-header -->
 
         <!-- Main content -->
@@ -26,8 +26,9 @@
                     <div class="col-10">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title col-11">Address table</h3>
-                                <a th:href="@{/admin/address/add}" class="btn btn-success col-1" role="button">Add new</a>
+                                <h2 class="card-title col-11">Address table</h2>
+                                <a th:href="@{/admin/address/add}" class="btn btn-success col-1" role="button">
+                                    <i class="nav-icon fas fa-plus"></i></a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">

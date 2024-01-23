@@ -22,23 +22,18 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     @Size(min = 2, max = 20)
     private String country;
 
-    @NotBlank
     @Size(min = 5, max = 6)
     private String postCode;
 
-    @NotBlank
     @Size(min = 2, max = 25)
     private String city;
 
-    @NotBlank
     @Size(min = 2, max = 50)
     private String street;
 
-    @NotBlank
     @Size(min =1, max = 5)
     private String number;
 

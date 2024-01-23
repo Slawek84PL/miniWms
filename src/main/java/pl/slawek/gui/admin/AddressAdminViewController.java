@@ -29,10 +29,10 @@ public class AddressAdminViewController {
     @GetMapping("add")
     public String addView(Model model) {
         model.addAttribute("address", new Address());
-        return "admin/address/add";
+        return "admin/address/edit";
     }
 
-    @PostMapping("add")
+    @PostMapping("save")
     public String add(@ModelAttribute("address") Address address) {
         addressService.add(address);
         return "redirect:/admin/address";

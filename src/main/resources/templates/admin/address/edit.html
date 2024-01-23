@@ -16,7 +16,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <th:block th:replace="~{admin/template :: contentHeader(contentName = 'Address')}"></th:block>
+        <th:block th:replace="~{admin/template :: contentHeader(contentName = #{content.address})}"></th:block>
         <!-- /.content-header -->
 
         <!-- Main content -->
@@ -27,36 +27,38 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title">Quick Example</h3>
+                                <h3 class="card-title" th:text="${address.getId() != null} ?
+                                #{content.address.form.edit} + ' ' + #{content.address} :
+                                #{content.address.form.add} +  ' ' + #{content.address}"></h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form th:method="POST" th:object="${address}" th:action="@{/admin/address/add}">
+                            <form th:method="POST" th:object="${address}" th:action="@{/admin/address/save}">
                                 <div class="card-body">
                                     <div class="row">
                                         <input th:field="*{id}" type="hidden" class="form-control disabled" id="id" placeholder="ID">
                                         <div class="form-group col-7">
-                                            <label for="street">Ulica</label>
-                                            <input th:field="*{street}" type="text" class="form-control" id="street" placeholder="Ulica">
+                                            <label th:text="#{content.address.form.street}" for="street"></label>
+                                            <input th:field="*{street}" type="text" class="form-control" id="street" th:placeholder="#{content.address.form.street}">
                                         </div>
                                         <div class="form-group col-3">
-                                            <label for="street">Numer</label>
-                                            <input th:field="*{number}" type="text" class="form-control" id="number" placeholder="Numer">
+                                            <label th:text="#{content.address.form.number}" for="number"></label>
+                                            <input th:field="*{number}" type="text" class="form-control" id="number" th:placeholder="#{content.address.form.number}">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-4">
-                                            <label for="street">Kod pocztowy</label>
-                                            <input th:field="*{postCode}" type="text" class="form-control" id="postCode" placeholder="Kod pocztowy">
+                                            <label th:text="#{content.address.form.postCode}" for="postCode"></label>
+                                            <input th:field="*{postCode}" type="text" class="form-control" id="postCode" th:placeholder="#{content.address.form.postCode}">
                                         </div>
                                         <div class="form-group col-8">
-                                            <label for="street">Miasto</label>
-                                            <input th:field="*{city}" type="text" class="form-control" id="city" placeholder="Miasto">
+                                            <label th:text="#{content.address.form.city}" for="city"></label>
+                                            <input th:field="*{city}" type="text" class="form-control" id="city" th:placeholder="#{content.address.form.city}">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="country">Kraj</label>
-                                        <input th:field="*{country}" type="text" class="form-control" id="country" placeholder="Kraj">
+                                        <label th:text="#{content.address.form.country}" for="country">Kraj</label>
+                                        <input th:field="*{country}" type="text" class="form-control" id="country" th:placeholder="#{content.address.form.country}">
                                     </div>
                                 </div>
                                 <!-- /.card-body -->

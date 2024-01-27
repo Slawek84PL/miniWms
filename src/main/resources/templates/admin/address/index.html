@@ -27,8 +27,6 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="card-title">Address table</h2>
-                                <a th:text="#{content.form.add}" th:href="@{/admin/address/add}" class="btn btn-success float-right" role="button">
-                                    <i class="nav-icon fas fa-plus"></i></a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -41,7 +39,6 @@
                                         <th class="col-2">Numer</th>
                                         <th class="col-2">Kod pocztowy</th>
                                         <th class="col-2">Kraj</th>
-                                        <th class="col-1">#</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -52,12 +49,6 @@
                                         <td th:text="${address.getNumber()}"></td>
                                         <td th:text="${address.getPostCode()}"></td>
                                         <td th:text="${address.getCountry()}"></td>
-                                        <td>
-                                        <a th:href="@{'/admin/address/delete/' + ${address.getId()}}" class="btn btn-danger btn-sm">
-                                            <i class="nav-icon fas fa-trash"></i></a>
-                                        <a th:href="@{'/admin/address/edit/' + ${address.getId()}}" class="btn btn-info btn-sm">
-                                                <i class="nav-icon fas fa-edit"></i></a>
-                                        </td>
                                     </tr>
                                     </tbody>
                                     <tfoot>
@@ -68,7 +59,6 @@
                                         <th>Numer</th>
                                         <th>Kod pocztowy</th>
                                         <th>Kraj</th>
-                                        <th>#</th>
                                     </tr>
                                     </tfoot>
                                 </table>

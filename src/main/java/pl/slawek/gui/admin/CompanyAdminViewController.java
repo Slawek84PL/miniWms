@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.slawek.domain.address.Address;
 import pl.slawek.domain.company.entity.Company;
 import pl.slawek.domain.company.service.CompanyService;
 
@@ -30,7 +31,9 @@ public class CompanyAdminViewController {
 
     @GetMapping("add")
     public String addView(Model model) {
-        model.addAttribute("company", new Company());
+        Company company = new Company();
+        model.addAttribute("company", company);
+        addAddres(model, company);
         return "admin/company/edit";
     }
 
@@ -38,13 +41,19 @@ public class CompanyAdminViewController {
     public String add(@Valid @ModelAttribute("company") Company company,
                       BindingResult bindingResult, Model model) {
 
-        if(bindingResult.hasErrors()) {
+        if (!bindingResult.hasErrors()) {
+
+            if (company.getId() != null) {
+                company.setAddress(service.getOne(company.getId()).getAddress());
+            }
+
+            service.add(company);
             model.addAttribute("company", company);
-            return "admin/company/edit";
         }
 
-        service.add(company);
-        return "redirect:/admin/companies";
+        addAddres(model, company);
+
+        return "admin/company/edit";
     }
 
     @GetMapping("delete/{companyId}")
@@ -55,7 +64,23 @@ public class CompanyAdminViewController {
 
     @GetMapping("edit/{companyId}")
     public String edit(@PathVariable long companyId, Model model) {
-        model.addAttribute("company", service.getOne(companyId));
+        Company company = service.getOne(companyId);
+        model.addAttribute("company", company);
+
+        model.addAttribute("type", "COMPANY");
+
+        if (!model.containsAttribute("addres")) {
+            addAddres(model, company);
+        }
+
         return "admin/company/edit";
+    }
+
+    private static void addAddres(Model model, Company company) {
+        if (company.getAddress() == null) {
+            model.addAttribute("address", new Address());
+        } else {
+            model.addAttribute("address", company.getAddress());
+        }
     }
 }

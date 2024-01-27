@@ -9,17 +9,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.slawek.domain.address.Address;
 import pl.slawek.domain.address.service.AddressService;
+import pl.slawek.domain.company.service.CompanyService;
 
 @Controller
 @RequestMapping("admin/address")
 public class AddressAdminViewController {
 
-   private final AddressService addressService;
+    private final AddressService addressService;
+    private final CompanyService companyService;
 
-    public AddressAdminViewController(AddressService addressService) {
+    public AddressAdminViewController(AddressService addressService, CompanyService companyService) {
         this.addressService = addressService;
+        this.companyService = companyService;
     }
 
     @GetMapping
@@ -34,13 +38,22 @@ public class AddressAdminViewController {
         return "admin/address/edit";
     }
 
-    @PostMapping("save")
+    @PostMapping("save/{type}/{id}")
     public String add(@Valid @ModelAttribute("address") Address address,
-                      BindingResult bindingResult, Model model) {
+                      BindingResult bindingResult,
+                      Model model,
+                      RedirectAttributes redirectAttributes,
+                      @PathVariable("type") String type,
+                      @PathVariable("id") Long id) {
 
-        if(bindingResult.hasErrors()) {
-            model.addAttribute("address", address);
-            return "admin/address/edit";
+        if (type.equals("COMPANY")) {
+            if (bindingResult.hasErrors()) {
+                redirectAttributes.addFlashAttribute("address", bindingResult); // TODO: 2024-01-27 flashattribute tutaj trzeba użyć
+                return "redirect:/admin/companies/edit/" + id;
+            }
+            addressService.add(address);
+            companyService.setAddress(id, address.getId());
+            return "redirect:/admin/companies/edit/" + id;
         }
 
         addressService.add(address);

@@ -27,9 +27,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title" th:text="${company.getId() != null} ?
-                                    #{content.form.edit} + ' ' + #{content.company} :
-                                    #{content.form.add} +  ' ' + #{content.company}"></h3>
+                                <h3 class="card-title" th:text="${company.getId() != null} ? #{content.form.edit} : #{content.form.add}"></h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -52,7 +50,10 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Zapisz</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-save"></i>
+                                        <span th:text="#{content.form.save}"></span>
+                                    </button>
                                 </div>
                             </form>
                             <div th:if="${company.id != null}">

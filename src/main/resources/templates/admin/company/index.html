@@ -27,8 +27,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Companies Table</h3>
-                                <a th:text="#{content.form.add}" th:href="@{/admin/companies/add}" class="btn btn-success float-right" role="button">
-                                    <i class="nav-icon fas fa-plus"></i></a>
+                                <a th:href="@{/admin/companies/add}" class="btn btn-success float-right" role="button">
+                                    <i class="nav-icon fas fa-plus"></i>
+                                    <span th:text="#{content.form.add}"></span>
+                                </a>
                             </div>
                             <!-- ./card-header -->
                             <div class="card-body">

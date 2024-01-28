@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.slawek.domain.address.Address;
 import pl.slawek.domain.address.service.AddressService;
@@ -38,17 +39,18 @@ public class AddressAdminViewController {
         return "admin/address/edit";
     }
 
-    @PostMapping("save/{type}/{id}")
+    @PostMapping("save")
     public String add(@Valid @ModelAttribute("address") Address address,
                       BindingResult bindingResult,
                       Model model,
                       RedirectAttributes redirectAttributes,
-                      @PathVariable("type") String type,
-                      @PathVariable("id") Long id) {
+                      @RequestParam("type") String type,
+                      @RequestParam("typeId") Long id) {
 
         if (type.equals("COMPANY")) {
             if (bindingResult.hasErrors()) {
-                redirectAttributes.addFlashAttribute("address", bindingResult); // TODO: 2024-01-27 flashattribute tutaj trzeba użyć
+                redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.address", bindingResult); // TODO: 2024-01-27 flashattribute tutaj trzeba użyć
+                redirectAttributes.addFlashAttribute("address", address);
                 return "redirect:/admin/companies/edit/" + id;
             }
             addressService.add(address);

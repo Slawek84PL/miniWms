@@ -39,12 +39,12 @@
                                         <div class="form-group col-sm-3">
                                             <label th:text="#{content.form.shortName}" for="street"></label>
                                             <input th:field="*{shortName}" type="text" class="form-control" id="street" th:placeholder="#{content.form.shortName}">
-                                            <p th:if="${#fields.hasErrors('shortName')}" th:errorclass="error" th:errors="*{shortName}" class="text-danger"/>
+                                            <p th:if="${#fields.hasErrors('shortName')}" th:errorclass="error" th:errors="*{shortName}" class="text-danger"></p>
                                         </div>
                                         <div class="form-group col-sm-9">
                                             <label th:text="#{content.form.name}" for="number"></label>
                                             <input th:field="*{name}" type="text" class="form-control" id="number" th:placeholder="#{content.form.name}">
-                                            <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}" class="text-danger"/>
+                                            <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}" class="text-danger"></p>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                 </div>
                             </form>
                             <div th:if="${company.id != null}">
-                                <div th:replace="~{admin/address/edit :: addAddressForm(${address}, 'COMPANY', ${company.id})}"></div>
+                                <div th:replace="~{admin/address/edit :: addAddressForm(address = ${address}, type = 'COMPANY', typeId = ${company.id})}"></div>
                             </div>
                         </div>
                         <!-- /.card -->

@@ -68,8 +68,7 @@ public class CompanyAdminViewController {
         model.addAttribute("company", company);
 
         model.addAttribute("type", "COMPANY");
-
-        if (!model.containsAttribute("addres")) {
+        if (!model.containsAttribute("address")) {
             addAddres(model, company);
         }
 

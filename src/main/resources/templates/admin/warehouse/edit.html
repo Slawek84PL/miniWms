@@ -16,7 +16,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <th:block th:replace="~{admin/template :: contentHeader(contentName = #{content.company})}"></th:block>
+        <th:block th:replace="~{admin/template :: contentHeader(contentName = #{content.warehouse})}"></th:block>
         <!-- /.content-header -->
 
         <!-- Main content -->
@@ -27,15 +27,15 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title" th:text="${company.getId() != null} ? #{content.form.edit} : #{content.form.add}"></h3>
+                                <h3 class="card-title" th:text="${warehouse.getId() != null} ? #{content.form.edit} : #{content.form.add}"></h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form th:method="POST" th:object="${company}" th:action="@{/admin/companies/save}">
+                            <form th:method="POST" th:object="${warehouse}" th:action="@{/admin/companies/save}">
                                 <div class="card-body">
                                     <div class="row">
                                         <input th:field="*{id}" type="hidden" class="form-control disabled" id="id" placeholder="ID">
-<!--                                        <input th:field="${company.getAddress().id}" type="hidden">-->
+<!--                                        <input th:field="${warehouse.getAddress().id}" type="hidden">-->
                                         <div class="form-group col-sm-3">
                                             <label th:text="#{content.form.shortName}" for="street"></label>
                                             <input th:field="*{shortName}" type="text" class="form-control" id="street" th:placeholder="#{content.form.shortName}">
@@ -56,8 +56,8 @@
                                     </button>
                                 </div>
                             </form>
-                            <div th:if="${company.id != null}">
-                                <div th:replace="~{admin/address/edit :: addAddressForm(address = ${address}, type = ${type}, typeId = ${company.id})}"></div>
+                            <div th:if="${warehouse.id != null}">
+                                <div th:replace="~{admin/address/edit :: addAddressForm(address = ${address}, type = ${type} , typeId = ${warehouse.id})}"></div>
                             </div>
                         </div>
                         <!-- /.card -->

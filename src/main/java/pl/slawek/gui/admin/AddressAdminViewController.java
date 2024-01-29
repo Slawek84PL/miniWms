@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.slawek.domain.address.Address;
 import pl.slawek.domain.address.service.AddressService;
 import pl.slawek.domain.company.service.CompanyService;
+import pl.slawek.domain.warehouse.service.WarehouseService;
 
 @Controller
 @RequestMapping("admin/address")
@@ -21,10 +22,12 @@ public class AddressAdminViewController {
 
     private final AddressService addressService;
     private final CompanyService companyService;
+    private final WarehouseService warehouseService;
 
-    public AddressAdminViewController(AddressService addressService, CompanyService companyService) {
+    public AddressAdminViewController(AddressService addressService, CompanyService companyService, WarehouseService warehouseService) {
         this.addressService = addressService;
         this.companyService = companyService;
+        this.warehouseService = warehouseService;
     }
 
     @GetMapping
@@ -41,21 +44,31 @@ public class AddressAdminViewController {
 
     @PostMapping("save")
     public String add(@Valid @ModelAttribute("address") Address address,
-                      BindingResult bindingResult,
-                      Model model,
+                      BindingResult bindingResult, Model model,
                       RedirectAttributes redirectAttributes,
                       @RequestParam("type") String type,
                       @RequestParam("typeId") Long id) {
 
         if (type.equals("COMPANY")) {
             if (bindingResult.hasErrors()) {
-                redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.address", bindingResult); // TODO: 2024-01-27 flashattribute tutaj trzeba użyć
+                redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.address", bindingResult);
                 redirectAttributes.addFlashAttribute("address", address);
                 return "redirect:/admin/companies/edit/" + id;
             }
             addressService.add(address);
             companyService.setAddress(id, address.getId());
             return "redirect:/admin/companies/edit/" + id;
+        }
+
+        if (type.equals("WAREHOUSE")) {
+            if (bindingResult.hasErrors()) {
+                redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.address", bindingResult);
+                redirectAttributes.addFlashAttribute("address", address);
+                return "redirect:/admin/warehouses/edit/" + id;
+            }
+            addressService.add(address);
+            warehouseService.setAddress(id, address.getId());
+            return "redirect:/admin/warehouses/edit/" + id;
         }
 
         addressService.add(address);

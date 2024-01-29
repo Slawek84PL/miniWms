@@ -47,8 +47,9 @@
                                         <td th:text="${warehouse.getName()}"></td>
                                         <td th:text="${warehouse.getPlaces().size()}"></td>
                                         <td>
-                                            <a th:href="@{'/admin/warehouse/' + ${warehouse.getId()}}" class="btn btn-info btn-sm">
-                                            <i class="fas fa-edit"></i>Edit</a>
+                                            <a th:href="@{'/admin/warehouses/edit/' + ${warehouse.getId()}}" class="btn btn-info btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                            <span th:text="#{content.form.edit}"></span></a>
                                         </td>
                                     </tr>
                                     <tr class="expandable-body">

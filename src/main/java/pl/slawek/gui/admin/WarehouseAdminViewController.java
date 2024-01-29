@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.slawek.config.CompanyType;
 import pl.slawek.domain.warehouse.entity.Warehouse;
 import pl.slawek.domain.warehouse.service.WarehouseService;
 
@@ -42,7 +43,7 @@ public class WarehouseAdminViewController {
             model.addAttribute("warehouse", warehouse);
         }
 
-        addAddres(model, warehouse);
+        addAddres(model, warehouse, CompanyType.WAREHOUSE);
 
         return "admin/warehouse/edit";
     }
@@ -52,9 +53,8 @@ public class WarehouseAdminViewController {
         Warehouse warehouse = service.getOne(warehouseId);
         model.addAttribute("warehouse", warehouse);
 
-        model.addAttribute("type", "WAREHOUSE");
         if (!model.containsAttribute("address")) {
-            addAddres(model, warehouse);
+            addAddres(model, warehouse, CompanyType.WAREHOUSE);
         }
 
         return "admin/warehouse/edit";

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.slawek.config.CompanyType;
 import pl.slawek.domain.company.entity.Company;
 import pl.slawek.domain.company.service.CompanyService;
 
@@ -34,7 +35,7 @@ public class CompanyAdminViewController {
     public String addView(Model model) {
         Company company = new Company();
         model.addAttribute("company", company);
-        addAddres(model, company);
+        addAddres(model, company, CompanyType.COMPANY);
         return "admin/company/edit";
     }
 
@@ -52,7 +53,7 @@ public class CompanyAdminViewController {
             model.addAttribute("company", company);
         }
 
-        addAddres(model, company);
+        addAddres(model, company, CompanyType.COMPANY);
 
         return "admin/company/edit";
     }
@@ -68,9 +69,8 @@ public class CompanyAdminViewController {
         Company company = service.getOne(companyId);
         model.addAttribute("company", company);
 
-        model.addAttribute("type", "COMPANY");
         if (!model.containsAttribute("address")) {
-            addAddres(model, company);
+            addAddres(model, company, CompanyType.COMPANY);
         }
 
         return "admin/company/edit";

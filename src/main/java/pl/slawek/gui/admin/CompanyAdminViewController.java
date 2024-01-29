@@ -13,7 +13,7 @@ import pl.slawek.config.CompanyType;
 import pl.slawek.domain.company.entity.Company;
 import pl.slawek.domain.company.service.CompanyService;
 
-import static pl.slawek.gui.admin.AdminViewUtils.addAddres;
+import static pl.slawek.gui.admin.AdminViewUtils.addAddress;
 
 @Controller
 @RequestMapping("admin/companies")
@@ -35,7 +35,7 @@ public class CompanyAdminViewController {
     public String addView(Model model) {
         Company company = new Company();
         model.addAttribute("company", company);
-        addAddres(model, company, CompanyType.COMPANY);
+        addAddress(model, company, CompanyType.COMPANY);
         return "admin/company/edit";
     }
 
@@ -53,7 +53,7 @@ public class CompanyAdminViewController {
             model.addAttribute("company", company);
         }
 
-        addAddres(model, company, CompanyType.COMPANY);
+        addAddress(model, company, CompanyType.COMPANY);
 
         return "admin/company/edit";
     }
@@ -70,7 +70,7 @@ public class CompanyAdminViewController {
         model.addAttribute("company", company);
 
         if (!model.containsAttribute("address")) {
-            addAddres(model, company, CompanyType.COMPANY);
+            addAddress(model, company, CompanyType.COMPANY);
         }
 
         return "admin/company/edit";

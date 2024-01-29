@@ -31,7 +31,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form th:method="POST" th:object="${warehouse}" th:action="@{/admin/companies/save}">
+                            <form th:method="POST" th:object="${warehouse}" th:action="@{/admin/warehouses/save}">
                                 <div class="card-body">
                                     <div class="row">
                                         <input th:field="*{id}" type="hidden" class="form-control disabled" id="id" placeholder="ID">

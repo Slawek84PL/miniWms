@@ -43,7 +43,7 @@ public class WarehouseAdminViewController {
             model.addAttribute("warehouse", warehouse);
         }
 
-        addAddres(model, warehouse, CompanyType.WAREHOUSE);
+        addAddress(model, warehouse, CompanyType.WAREHOUSE);
 
         return "admin/warehouse/edit";
     }
@@ -54,7 +54,7 @@ public class WarehouseAdminViewController {
         model.addAttribute("warehouse", warehouse);
 
         if (!model.containsAttribute("address")) {
-            addAddres(model, warehouse, CompanyType.WAREHOUSE);
+            addAddress(model, warehouse, CompanyType.WAREHOUSE);
         }
 
         return "admin/warehouse/edit";

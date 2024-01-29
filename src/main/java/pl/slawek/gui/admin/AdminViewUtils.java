@@ -7,7 +7,7 @@ import pl.slawek.domain.address.Address;
 
 class AdminViewUtils {
 
-    static void addAddres(Model model, BaseCompanyData baseCompanyData, CompanyType type) {
+    static void addAddress(Model model, BaseCompanyData baseCompanyData, CompanyType type) {
 
         model.addAttribute("type", type);
 

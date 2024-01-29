@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.slawek.domain.warehouse.service.WarehouseService;
 
+import static pl.slawek.gui.admin.AdminViewUtils.*;
+
 @Controller
 @RequestMapping("admin/warehouses")
 public class WarehouseAdminViewController {

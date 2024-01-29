@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.slawek.domain.address.Address;
 import pl.slawek.domain.company.entity.Company;
 import pl.slawek.domain.company.service.CompanyService;
+
+import static pl.slawek.gui.admin.AdminViewUtils.addAddres;
 
 @Controller
 @RequestMapping("admin/companies")
@@ -73,13 +74,5 @@ public class CompanyAdminViewController {
         }
 
         return "admin/company/edit";
-    }
-
-    private static void addAddres(Model model, Company company) {
-        if (company.getAddress() == null) {
-            model.addAttribute("address", new Address());
-        } else {
-            model.addAttribute("address", company.getAddress());
-        }
     }
 }

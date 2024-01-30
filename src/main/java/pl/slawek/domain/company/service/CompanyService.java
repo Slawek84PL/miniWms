@@ -20,7 +20,7 @@ public class CompanyService {
 
     @Transactional(readOnly = true)
     public List<Company> getAll() {
-        return repository.findAll();
+        return repository.findAllWithDetails();
     }
 
     @Transactional(readOnly = true)

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/template :: head(title = 'Mini WMS')}"></head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <th:block th:replace="~{admin/template :: navbar}"></th:block>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <th:block th:replace="~{admin/template :: sidebar}"></th:block>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <th:block th:replace="~{admin/template :: contentHeader(contentName = #{menu.address})}"></th:block>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-10">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Address table</h2>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="Table" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="col-1">ID</th>
+                                        <th class="col-2">Miejscowość</th>
+                                        <th class="col-2" >Ulica</th>
+                                        <th class="col-2">Numer</th>
+                                        <th class="col-2">Kod pocztowy</th>
+                                        <th class="col-2">Kraj</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="address : ${addresses}">
+                                        <td th:text="${address.getId()}"></td>
+                                        <td th:text="${address.getCity()}"></td>
+                                        <td th:text="${address.getStreet()}"></td>
+                                        <td th:text="${address.getNumber()}"></td>
+                                        <td th:text="${address.getPostCode()}"></td>
+                                        <td th:text="${address.getCountry()}"></td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Miejscowość</th>
+                                        <th>Ulica</th>
+                                        <th>Numer</th>
+                                        <th>Kod pocztowy</th>
+                                        <th>Kraj</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <th:block th:replace="~{admin/template :: rightbar}"></th:block>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <th:block th:replace="~{admin/template :: footer}"></th:block>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/template :: head(title = 'Mini WMS')}"></head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <th:block th:replace="~{admin/template :: navbar}"></th:block>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <th:block th:replace="~{admin/template :: sidebar}"></th:block>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <th:block th:replace="~{admin/template :: contentHeader(contentName = #{content.address})}"></th:block>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title" th:text="${address.getId() != null} ? #{content.form.edit} : #{content.form.add}"></h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form th:fragment="addAddressForm(address, type, typeId)" th:method="POST" th:object="${address}" th:action="@{/admin/address/save}">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="hide">
+                                            <input th:field="*{id}" type="hidden"/>
+                                            <input name="type" th:value="${type}" type="hidden"/>
+                                            <input name="typeId" th:value="${typeId}" type="hidden"/>
+                                        </div>
+                                        <div class="form-group col-sm-9">
+                                            <label th:text="#{content.address.form.street}" for="street"></label>
+                                            <input th:field="*{street}" type="text" class="form-control" id="street" th:placeholder="#{content.address.form.street}">
+                                            <p th:if="${#fields.hasErrors('street')}" th:errorclass="error" th:errors="*{street}" class="text-danger"/>
+                                        </div>
+                                        <div class="form-group col-sm-3">
+                                            <label th:text="#{content.address.form.number}" for="number"></label>
+                                            <input th:field="*{number}" type="text" class="form-control" id="number" th:placeholder="#{content.address.form.number}">
+                                            <p th:if="${#fields.hasErrors('number')}" th:errorclass="error" th:errors="*{number}" class="text-danger"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-4">
+                                            <label th:text="#{content.address.form.postCode}" for="postCode"></label>
+                                            <input th:field="*{postCode}" type="text" class="form-control" id="postCode" th:placeholder="#{content.address.form.postCode}">
+                                            <p th:if="${#fields.hasErrors('postCode')}" th:errorclass="error" th:errors="*{postCode}" class="text-danger"/>
+                                        </div>
+                                        <div class="form-group col-sm-8">
+                                            <label th:text="#{content.address.form.city}" for="city"></label>
+                                            <input th:field="*{city}" type="text" class="form-control" id="city" th:placeholder="#{content.address.form.city}">
+                                            <p th:if="${#fields.hasErrors('city')}" th:errorclass="error" th:errors="*{city}" class="text-danger"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label th:text="#{content.address.form.country}" for="country">Kraj</label>
+                                        <input th:field="*{country}" type="text" class="form-control" id="country" th:placeholder="#{content.address.form.country}">
+                                        <p th:if="${#fields.hasErrors('country')}" th:errors="*{country}" class="text-danger"/>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-save"></i>
+                                        <span th:text="#{content.form.save}"></span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <th:block th:replace="~{admin/template :: rightbar}"></th:block>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <th:block th:replace="~{admin/template :: footer}"></th:block>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

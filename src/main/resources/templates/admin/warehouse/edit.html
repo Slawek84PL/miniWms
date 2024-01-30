@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/template :: head(title = 'Mini WMS')}"></head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <th:block th:replace="~{admin/template :: navbar}"></th:block>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <th:block th:replace="~{admin/template :: sidebar}"></th:block>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <th:block th:replace="~{admin/template :: contentHeader(contentName = #{content.warehouse})}"></th:block>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title" th:text="${warehouse.getId() != null} ? #{content.form.edit} : #{content.form.add}"></h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form th:method="POST" th:object="${warehouse}" th:action="@{/admin/warehouses/save}">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <input th:field="*{id}" type="hidden" class="form-control disabled" id="id" placeholder="ID">
+<!--                                        <input th:field="${warehouse.getAddress().id}" type="hidden">-->
+                                        <div class="form-group col-sm-3">
+                                            <label th:text="#{content.form.shortName}" for="street"></label>
+                                            <input th:field="*{shortName}" type="text" class="form-control" id="street" th:placeholder="#{content.form.shortName}">
+                                            <p th:if="${#fields.hasErrors('shortName')}" th:errorclass="error" th:errors="*{shortName}" class="text-danger"></p>
+                                        </div>
+                                        <div class="form-group col-sm-9">
+                                            <label th:text="#{content.form.name}" for="number"></label>
+                                            <input th:field="*{name}" type="text" class="form-control" id="number" th:placeholder="#{content.form.name}">
+                                            <p th:if="${#fields.hasErrors('name')}" th:errorclass="error" th:errors="*{name}" class="text-danger"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-save"></i>
+                                        <span th:text="#{content.form.save}"></span>
+                                    </button>
+                                </div>
+                            </form>
+                            <div th:if="${warehouse.id != null}">
+                                <div th:replace="~{admin/address/edit :: addAddressForm(address = ${address}, type = ${type} , typeId = ${warehouse.id})}"></div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <th:block th:replace="~{admin/template :: rightbar}"></th:block>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <th:block th:replace="~{admin/template :: footer}"></th:block>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

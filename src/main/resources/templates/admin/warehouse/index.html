@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{admin/template :: head(title = 'Mini WMS')}"></head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <th:block th:replace="~{admin/template :: navbar}"></th:block>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <th:block th:replace="~{admin/template :: sidebar}"></th:block>
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <th:block th:replace="~{admin/template :: contentHeader(contentName = #{menu.warehouses})}"></th:block>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Expandable Table</h3>
+                                <a th:href="@{/admin/warehouses/add}" class="btn btn-success float-right" role="button">
+                                    <i class="nav-icon fas fa-plus"></i>
+                                    <span th:text="#{content.form.add}"></span>
+                                </a>
+                            </div>
+                            <!-- ./card-header -->
+                            <div class="card-body">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th class="col-1">#</th>
+                                        <th class="col-2">Short Name</th>
+                                        <th class="col-3">Name</th>
+                                        <th class="col-1">Place</th>
+                                        <th class="col-5">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:each="warehouse : ${warehouses}">
+                                    <tr data-widget="expandable-table" aria-expanded="false">
+                                        <td th:text="${warehouse.getId()}"></td>
+                                        <td th:text="${warehouse.getShortName()}"></td>
+                                        <td th:text="${warehouse.getName()}"></td>
+                                        <td th:text="${warehouse.getPlaces().size()}"></td>
+                                        <td>
+                                            <a th:href="@{'/admin/warehouses/edit/' + ${warehouse.getId()}}" class="btn btn-info btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                            <span th:text="#{content.form.edit}"></span></a>
+                                            <a th:href="@{'/admin/warehouses/delete/' + ${warehouse.getId()}}" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                                <span th:text="#{content.form.delete}"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr class="expandable-body">
+                                        <td colspan="5">
+                                            <p>
+                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+    <th:block th:replace="~{admin/template :: rightbar}"></th:block>
+    <!-- /.control-sidebar -->
+
+    <!-- Main Footer -->
+    <th:block th:replace="~{admin/template :: footer}"></th:block>
+</div>
+<!-- ./wrapper -->
+</body>
+</html>

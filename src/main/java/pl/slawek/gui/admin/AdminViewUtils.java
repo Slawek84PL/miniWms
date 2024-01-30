@@ -17,4 +17,17 @@ class AdminViewUtils {
             model.addAttribute("address", baseCompanyData.getAddress());
         }
     }
+
+    static String getUrl(CompanyType type, long id) {
+
+        switch (type) {
+            case COMPANY -> {
+                return "redirect:/admin/companies/edit/" + id;
+            }
+            case WAREHOUSE -> {
+                return "redirect:/admin/warehouses/edit/" + id;
+            }
+        }
+        return "redirect:/admin/address";
+    }
 }

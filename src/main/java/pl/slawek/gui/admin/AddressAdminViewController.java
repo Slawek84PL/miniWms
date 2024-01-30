@@ -1,6 +1,7 @@
 package pl.slawek.gui.admin;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,24 +12,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pl.slawek.config.CompanyType;
 import pl.slawek.domain.address.Address;
 import pl.slawek.domain.address.service.AddressService;
-import pl.slawek.domain.company.service.CompanyService;
-import pl.slawek.domain.warehouse.service.WarehouseService;
 
+import static pl.slawek.gui.admin.AdminViewUtils.getUrl;
+
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("admin/address")
 public class AddressAdminViewController {
 
     private final AddressService addressService;
-    private final CompanyService companyService;
-    private final WarehouseService warehouseService;
-
-    public AddressAdminViewController(AddressService addressService, CompanyService companyService, WarehouseService warehouseService) {
-        this.addressService = addressService;
-        this.companyService = companyService;
-        this.warehouseService = warehouseService;
-    }
+    private final AddressAdminViewUtils addressAdminViewUtils;
 
     @GetMapping
     public String indexView(Model model) {
@@ -46,33 +42,23 @@ public class AddressAdminViewController {
     public String add(@Valid @ModelAttribute("address") Address address,
                       BindingResult bindingResult, Model model,
                       RedirectAttributes redirectAttributes,
-                      @RequestParam("type") String type,
+                      @RequestParam("type") CompanyType type,
                       @RequestParam("typeId") Long id) {
 
-        if (type.equals("COMPANY")) {
-            if (bindingResult.hasErrors()) {
-                redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.address", bindingResult);
-                redirectAttributes.addFlashAttribute("address", address);
-                return "redirect:/admin/companies/edit/" + id;
-            }
-            addressService.add(address);
-            companyService.setAddress(id, address.getId());
-            return "redirect:/admin/companies/edit/" + id;
+        String redirectUrl = getUrl(type, id);
+
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.address", bindingResult);
+            redirectAttributes.addFlashAttribute("address", address);
+            return redirectUrl;
         }
 
-        if (type.equals("WAREHOUSE")) {
-            if (bindingResult.hasErrors()) {
-                redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.address", bindingResult);
-                redirectAttributes.addFlashAttribute("address", address);
-                return "redirect:/admin/warehouses/edit/" + id;
-            }
+        if (address.getId() == null) {
             addressService.add(address);
-            warehouseService.setAddress(id, address.getId());
-            return "redirect:/admin/warehouses/edit/" + id;
         }
 
-        addressService.add(address);
-        return "redirect:/admin/address";
+        addressAdminViewUtils.addAddress(address, type, id);
+        return redirectUrl;
     }
 
     @GetMapping("delete/{addressId}")

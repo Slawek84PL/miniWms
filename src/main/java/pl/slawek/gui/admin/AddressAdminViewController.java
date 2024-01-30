@@ -23,6 +23,7 @@ import static pl.slawek.gui.admin.AdminViewUtils.getUrl;
 @RequestMapping("admin/address")
 public class AddressAdminViewController {
 
+    public static final String ADDRESS = "address";
     private final AddressService addressService;
     private final AddressAdminViewUtils addressAdminViewUtils;
 
@@ -34,12 +35,12 @@ public class AddressAdminViewController {
 
     @GetMapping("add")
     public String addView(Model model) {
-        model.addAttribute("address", new Address());
+        model.addAttribute(ADDRESS, new Address());
         return "admin/address/edit";
     }
 
     @PostMapping("save")
-    public String add(@Valid @ModelAttribute("address") Address address,
+    public String add(@Valid @ModelAttribute(ADDRESS) Address address,
                       BindingResult bindingResult, Model model,
                       RedirectAttributes redirectAttributes,
                       @RequestParam("type") CompanyType type,
@@ -49,7 +50,7 @@ public class AddressAdminViewController {
 
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.address", bindingResult);
-            redirectAttributes.addFlashAttribute("address", address);
+            redirectAttributes.addFlashAttribute(ADDRESS, address);
             return redirectUrl;
         }
 
@@ -69,7 +70,7 @@ public class AddressAdminViewController {
 
     @GetMapping("edit/{addressId}")
     public String edit(@PathVariable long addressId, Model model) {
-        model.addAttribute("address", addressService.getOne(addressId));
+        model.addAttribute(ADDRESS, addressService.getOne(addressId));
         return "admin/address/edit";
     }
 }

@@ -1,6 +1,7 @@
 package pl.slawek.gui.admin;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,15 +16,14 @@ import pl.slawek.domain.warehouse.service.WarehouseService;
 
 import static pl.slawek.gui.admin.AdminViewUtils.*;
 
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("admin/warehouses")
 public class WarehouseAdminViewController {
 
+    public static final String ADMIN_WAREHOUSE_EDIT = "admin/warehouse/edit";
+    public static final String WAREHOUSE = "warehouse";
     private final WarehouseService service;
-
-    public WarehouseAdminViewController(WarehouseService service) {
-        this.service = service;
-    }
 
     @GetMapping
     public String indexView(Model model) {
@@ -31,8 +31,16 @@ public class WarehouseAdminViewController {
         return "admin/warehouse/index";
     }
 
+    @GetMapping("add")
+    public String addView(Model model) {
+        Warehouse warehouse = new Warehouse();
+        model.addAttribute(WAREHOUSE, warehouse);
+        addAddress(model, warehouse, CompanyType.WAREHOUSE);
+        return ADMIN_WAREHOUSE_EDIT;
+    }
+
     @PostMapping("save")
-    public String add(@Valid @ModelAttribute("warehouse") Warehouse warehouse,
+    public String add(@Valid @ModelAttribute(WAREHOUSE) Warehouse warehouse,
                       BindingResult bindingResult, Model model) {
 
         if (!bindingResult.hasErrors()) {
@@ -40,24 +48,30 @@ public class WarehouseAdminViewController {
                 warehouse.setAddress(service.getOne(warehouse.getId()).getAddress());
             }
             service.add(warehouse);
-            model.addAttribute("warehouse", warehouse);
+            model.addAttribute(WAREHOUSE, warehouse);
         }
 
         addAddress(model, warehouse, CompanyType.WAREHOUSE);
 
-        return "admin/warehouse/edit";
+        return ADMIN_WAREHOUSE_EDIT;
+    }
+
+    @GetMapping("delete/{warehouseId}")
+    public String delete(@PathVariable long warehouseId) {
+        service.delete(warehouseId);
+        return "redirect:/admin/warehouses";
     }
 
     @GetMapping("edit/{warehouseId}")
     public String edit(@PathVariable long warehouseId, Model model) {
         Warehouse warehouse = service.getOne(warehouseId);
-        model.addAttribute("warehouse", warehouse);
+        model.addAttribute(WAREHOUSE, warehouse);
 
         if (!model.containsAttribute("address")) {
             addAddress(model, warehouse, CompanyType.WAREHOUSE);
         }
 
-        return "admin/warehouse/edit";
+        return ADMIN_WAREHOUSE_EDIT;
     }
 
 }

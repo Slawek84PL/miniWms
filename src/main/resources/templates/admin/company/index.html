@@ -51,10 +51,14 @@
                                         <td th:text="${company.getName()}"></td>
                                         <td th:text="${company.getArticles().size()}"></td>
                                         <td>
-                                            <a th:href="@{'/admin/companies/delete/' + ${company.getId()}}" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-trash"></i></a>
                                             <a th:href="@{'/admin/companies/edit/' + ${company.getId()}}" class="btn btn-info btn-sm">
-                                                <i class="fas fa-edit"></i></a>
+                                                <i class="fas fa-edit"></i>
+                                                <span th:text="#{content.form.edit}"></span>
+                                            </a>
+                                            <a th:href="@{'/admin/companies/delete/' + ${company.getId()}}" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-trash"></i>
+                                                <span th:text="#{content.form.delete}"></span>
+                                            </a>
                                         </td>
                                     </tr>
                                     </tbody>
